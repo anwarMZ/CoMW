@@ -5,17 +5,16 @@ Comparative Metatranscriptomics Workflow is a standardized and validated workflo
 If you use CoMW in your research, please cite:
 
 
-
+For queries use issues or contact : mzanwar@envs.au.dk
 
 # Installation
 
 1. Download the latest distribution and expand it using unzip
 
-Or 
+	OR 
 
 2. Download the development version:
-
-git clone https://github.com/Zohaib509/CoMW.git
+   git clone https://github.com/Zohaib509/CoMW.git
 
 
 
@@ -58,3 +57,8 @@ Lombard, V., Golaconda Ramulu, H., Drula, E., Coutinho, P.M. and Henrissat, B., 
 
 3. NCycDB: a curated integrative database for fast and accurate metagenomic profiling of nitrogen cycling genes
 Tu, Q., Lin, L., Cheng, L., Deng, Y., He, Z. and Wren, J., 2018. NCycDB: a curated integrative database for fast and accurate metagenomic profiling of nitrogen cycling genes. Bioinformatics, 1, p.9.
+
+
+# Acknowledgment
+
+This work was supported by a grant from the European Commission’s Marie Sklowdowska Curie Actions program MicroArctic-ITN under project number 675546.
