@@ -1,4 +1,4 @@
-#CoMW
+## CoMW
 
 Comparative Metatranscriptomics Workflow is a standardized and validated workflow to functionally classify quality filtered mRNA reads from metatranscriptomic or total RNA studiesgenerated using HiSeq, MiSeq. CoMW is used for classification of these reads using assembled contigs to the reference databases provided and cited. 
 
@@ -7,7 +7,7 @@ If you use CoMW in your research, please cite:
 
 
 
-#Installation
+# Installation
 
 1. Download the latest distribution and expand it using unzip
 
@@ -19,7 +19,7 @@ git clone https://github.com/Zohaib509/CoMW.git
 
 
 
-#Scripts
+# Scripts
 
 These scripts are written in Python and detailed parameters and dependdencies are along with usage examples are given in CoMW user manual CoMW_Manual.pdf
 
@@ -37,13 +37,13 @@ These scripts are written in Python and detailed parameters and dependdencies ar
 
 
 
-#Utils
+# Utils
 
 Utils are small snippets written in R or bash to assist main scripts.
 They must be present in utils folder in order to be accessible
 
 
-#Databases 
+# Databases 
 
 Databases include fasta files and annotations that are also available in their respective developer's websites but are also collected here under same licence
 Depending upon your usage, please cite the efforts of these databases that were developed by these groups.
