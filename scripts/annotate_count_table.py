@@ -327,8 +327,8 @@ def annotate_NCyc(tabfile, outfile):
 
 
 CoMWdir = os.path.realpath(__file__)
-dbdir =  path.abspath(path.join(__file__ ,"../databases"))
-utildir = path.abspath(path.join(__file__ ,"../utils"))
+dbdir =  path.abspath(path.join(__file__ ,"../../databases"))
+utildir = path.abspath(path.join(__file__ ,"../../utils"))
 outputdir, outputfile = os.path.split(args.outputfile)
 inputdir, inputfile = os.path.split(args.inputfile)
 
