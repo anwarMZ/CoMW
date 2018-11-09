@@ -37,7 +37,7 @@ if not args.mapfile: print "No map file provided"
 if not (args.inputfile and args.outputfile and args.mapfile): sys.exit(1)
 
 CoMWdir = os.path.realpath(__file__)
-utildir = path.abspath(path.join(__file__ ,"../utils"))
+utildir = path.abspath(path.join(__file__ ,"../../utils"))
 outputdir, outputfile = os.path.split(args.outputfile)
 inputdir, inputfile = os.path.split(args.inputfile)
 mapdir, mapfile = os.path.split(args.mapfile)

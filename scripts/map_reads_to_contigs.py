@@ -73,8 +73,8 @@ def merge(filename, fileout):
 threads=str(args.threads)
 
 CoMWdir = os.path.realpath(__file__)
-dbdir =  path.abspath(path.join(__file__ ,"../databases"))
-utildir = path.abspath(path.join(__file__ ,"../utils"))
+dbdir =  path.abspath(path.join(__file__ ,"../../databases"))
+utildir = path.abspath(path.join(__file__ ,"../../utils"))
 contigsdir, contigsfile= os.path.split(args.fastafile)
 outputdir, outputfile = os.path.split(args.outputfile)
 readsdir=str(args.readsdir)+"/"

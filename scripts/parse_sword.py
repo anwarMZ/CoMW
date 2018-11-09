@@ -138,8 +138,8 @@ def NCyc_map(filename):
 
 
 CoMWdir = os.path.realpath(__file__)
-dbdir =  path.abspath(path.join(__file__ ,"../databases"))
-utildir = path.abspath(path.join(__file__ ,"../utils"))
+dbdir =  path.abspath(path.join(__file__ ,"../../databases"))
+utildir = path.abspath(path.join(__file__ ,"../../utils"))
 outputdir, outputfile = os.path.split(args.outputfile)
 inputdir, inputfile = os.path.split(args.inputfile)
 e="1E-"+str(args.Evalue)
