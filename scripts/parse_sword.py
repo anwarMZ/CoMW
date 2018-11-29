@@ -48,7 +48,7 @@ if args.database not in [1,2,3]:sys.exit(1)
 
 
 def Md5nr_map(filename):
-	f=open(filename,"r")
+	f=open(outputdir+"/"+outputfile,"r")
 	lines=f.readlines()
 	f.close()
 
@@ -153,13 +153,14 @@ if __name__ == "__main__":
 	parser=SWORD.readlines()
 	SWORD.close()
 	header = "Query id\tSubject id\t% identity\talignment length\tmismatches\tgap openings\tq. start\tq. end\ts. start\ts. end\te-value\tscore\n"
-	SWORDparsed=open(outputdir+"/"+outputfile,'w')
+	SWORDparsed=open(outputdir+"/Tempfile.tsv",'w')
 	SWORDparsed.write(header)
 	for line in parser:
 		if "Fields" not in line and "Query id" not in line:
 			SWORDparsed.write(line)
 	SWORDparsed.close()
-	subprocess.call(['Rscript', utildir+'/ParsingSword.R',outputdir,outputfile,e])
+	print e
+	subprocess.call(['Rscript', utildir+'/ParsingSword.R',outputdir,"Tempfile.tsv",outputfile,e])
 	
 	if db is 1:
 		Md5nr_map(filename = outputdir+"/"+outputfile)
