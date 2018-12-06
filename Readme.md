@@ -16,6 +16,12 @@ For queries use issues or contact : mzanwar@envs.au.dk
 2. Download the development version:
    > git clone https://github.com/Zohaib509/CoMW.git
 
+# Download Databases and Annotations
+All databases and annotations can be downloaded from a single link here 
+http://tiny.cc/CoMW_DBS
+
+> unzip CoMW_DB
+> bzip2 -d ./CoMW_DB/*
 
 
 # Scripts
