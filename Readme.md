@@ -14,7 +14,7 @@ For queries use issues or contact : mzanwar@envs.au.dk
 	OR 
 
 2. Download the development version:
-   git clone https://github.com/Zohaib509/CoMW.git
+   > git clone https://github.com/Zohaib509/CoMW.git
 
 
 
