@@ -21,6 +21,7 @@ All databases and annotations can be downloaded from a single link here
 http://tiny.cc/CoMW_DBS
 
 > unzip CoMW_DB
+
 > bzip2 -d ./CoMW_DB/*
 
 
