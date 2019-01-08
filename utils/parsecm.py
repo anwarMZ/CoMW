@@ -10,6 +10,7 @@ If a read looks like more than one Model - the lowest bitscore wins it
 '''
 
 import sys
+import os
 
 class Model:
     def __init__(self,name):
@@ -119,13 +120,14 @@ class CmsearchOut:
     
 if __name__=="__main__":
     if len(sys.argv) < 3: 
-        print "Use cmsearchparse.py cmsearch-output e-value-cutoff [options] \n \
+        print "Use parsecm.py cmsearch-output e-value-cutoff [options] \n \
                 Options:\n \
-                -underscore : Fasta file has nderscore AmpliconNoise style annotation for abundance\n \
+                -underscore : Fasta file has underscore AmpliconNoise style annotation for abundance\n \
                 -old : support for older infernal (before v1.1)\n"
     else:
-        mt = CmsearchOut(sys.argv[1])
-        
+	inputdir, inputfile = os.path.split(sys.argv[1])	
+	mt = CmsearchOut(inputdir+"/"+inputfile)
+	        
         if (len(sys.argv)>3 and sys.argv[3]=="-underscore") or (len(sys.argv)>4 and sys.argv[4]=="-underscore"):
             ampnoise_us_annotation = True
         else:
@@ -135,10 +137,10 @@ if __name__=="__main__":
         else:
             mt.parse(float(sys.argv[2]))
         #print("\n----------------------\n")
-	ncRNA = open("ncRNA.txt","w")
+	ncRNA = open(inputdir+"/"+inputfile.replace(".out","ncRNA.txt"),"w")
         for Model in mt.models.values():
             Model.printReadNumber(ampnoise_us_annotation)
-            fof = open(Model.name+".fof","w")
+            fof = open(inputdir+"/TempFiles/"+inputfile.replace(".out","_")+Model.name+".fof","w")
             for read in Model.reads:
                 fof.write(read+"\n")
 		ncRNA.write(read + "\n")

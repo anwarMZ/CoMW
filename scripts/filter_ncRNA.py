@@ -33,6 +33,8 @@ from Bio.SeqRecord import SeqRecord
 from Bio import SeqIO
 import os.path as path
 import shutil
+from Bio.SeqIO import FastaIO
+import re
 
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
@@ -49,19 +51,29 @@ if not (args.outputfile and args.fastafile): sys.exit(1)
 if args.remove not in ['y','n']:sys.exit(1)
 
 
-def filter_fasta(fastafile, prefix):
-	f=open(fastadir+"/TempFiles/"+prefix+"_IncludedContigs.txt",'r')
+def multi2linefasta(fastafile):
+	mfasta = fastafile.replace(tail,"_formatted"+tail)
+	ifile = open(fastafile,'rU')
+	with open(mfasta, 'w') as ofile:
+		for record in SeqIO.parse(ifile, "fasta"):
+			sequence = str(record.seq)
+			ofile.write('>'+record.id+'\n'+sequence+'\n')
+
+
+def filter_fasta(fastafile_formatted, idfile):
+	f=open(idfile,'r')
 	lines=f.readlines()
 	f.close()
 
 	ids=[]
 	for i in range(1,len(lines)):
 		lines[i]=lines[i].strip()
-		ids.append(lines[i].split("\t")[1])
-
-	f=open(fastadir+"/"+prefix+"_ncRNA_Removed_"+fastaf,'w')
-	for record in SeqIO.parse(fastafile,'fasta'):
-		if record.id in ids:
+		ids.append(lines[i])
+	#print ids
+	
+	f=open(outputdir+"/"+outputfile,'w')
+	for record in SeqIO.parse(fastafile_formatted,'fasta'):
+		if record.id not in ids:
 			f.write(">"+str(record.id)+"\n")
 			f.write(str(record.seq)+"\n")
 
@@ -75,24 +87,25 @@ fastadir, fastaf = os.path.split(args.fastafile)
 outputdir, outputfile = os.path.split(args.outputfile)
 cpus = args.threads
 e=str(args.evalue)
+head, tail = os.path.splitext(fastaf)
 
 
 if __name__ == "__main__":
 
-	if not os.path.exists(fastadir+"/TempFiles"):
-		os.makedirs(fastadir+"/TempFiles")
+	if not os.path.exists(outputdir+"/TempFiles"):
+		os.makedirs(outputdir+"/TempFiles")
 	print "Running Infernal to detect ncRNAs\n"
-	command=["cmsearch", "--cpu "+str(cpus), "-o "+fastadir+"/cmsearch_"+fastaf.replace(".fasta",".out"), dbdir+"/"+"Rfam.cm" , fastadir+"/"+fastaf]
+	command=["cmsearch", "--cpu "+str(cpus), "-o "+outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), dbdir+"/"+"Rfam.cm" , fastadir+"/"+fastaf]
 	subprocess.check_output(command)
 	print "Parsing Output\n"
-	command =["python",utildir+"/cmsearch/parsecm.py", fastadir+"/cmsearch_"+fastaf.replace(".fasta",".out"), " 1E-" +e]
+	command = ["python", utildir+"/parsecm.py", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), "1E-"+e]
+	subprocess.check_output(command)
 	print "ncRNAs predicted\n"
 	print "Filtering FASTA file provided\n"
-	#filter_fasta(fastadir+"/"+fastaf, prefix = outprefix)
+	multi2linefasta(fastafile = fastadir+"/"+fastaf)
+	filter_fasta(fastafile_formatted = fastadir+"/"+fastaf.replace(tail,"_formatted"+tail), idfile = outputdir +"/"+fastaf.replace(".fasta","_cmsearchncRNA.txt"))
 	print "FASTA file filtered\n"
 	agree= args.remove
 	if agree is 'y':
 		shutil.rmtree(fastadir+"/TempFiles/")
 	
-
-
