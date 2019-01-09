@@ -70,8 +70,7 @@ def filter_fasta(fastafile_formatted, idfile):
 	for i in range(1,len(lines)):
 		lines[i]=lines[i].strip()
 		ids.append(lines[i])
-	#print ids
-	
+		
 	f=open(outputdir+"/"+outputfile,'w')
 	for record in SeqIO.parse(fastafile_formatted,'fasta'):
 		if record.id not in ids:
