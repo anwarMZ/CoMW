@@ -5,22 +5,23 @@ License: GPL v3.0\n\n
 
 
 Description:
-This is an optional script filters the contigs less than a given threshold of relative expression. eg if e=1 \n Only Contigs with sum > 1/sum(Minimum Reads) are selected.
-Filters out contigs from both count table [output from map_reads_to_contigs.py] and fasta file of contigs assembled.
+This is an optional script that filters the non-coding RNAs from the assembled contigs based on the alignment against RFam database.
 
 
 Example
-Given an input count table and FATSA file generates a new count table and FASTA file that includes only contigs that have a relative expression of higher than the threshold specified by the user. 
+Given an input FATSA file generates a new FASTA file that includes only contigs that have filtered non-coding RNAs from the contigs based on the confidence threshold provided by the user. 
 
 
 Dependencies:
-1. $CoMW/utils/Filteration.R
+1. $CoMW/utils/parsecm.py
 2. Bio.Seq http://biopython.org/DIST/docs/api/Bio.Seq-module.html from biopython http://biopython.org  
+3. Infernal in path http://eddylab.org/infernal/
 
 
 Example:
-python filter_table_by_abundance.py -i abundance_table.tsv -f contigs.fasta -e 1 -o out_prefix -r y 
-filters abundance_table.tsv and contigs.fasta using expression 1% and producing the new abundance table and contigs file with output prefix in same directory
+python filter_ncRNA.py -f contigs.fasta -e 3 -t 16 -o contigs_ncrna_filtered.fasta -r y
+ -e 1 -o out_prefix -r y 
+filters contigs.fasta using ncRNA database and produces filtered contigs file
 
 """
 
@@ -34,7 +35,7 @@ from Bio import SeqIO
 import os.path as path
 import shutil
 from Bio.SeqIO import FastaIO
-import re
+
 
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
