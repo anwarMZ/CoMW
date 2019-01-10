@@ -71,8 +71,7 @@ if __name__ == "__main__":
 			right = left + item + ","
 		right = right.strip(",")
 		command = ["Trinity", "--seqType fq" , "--max_memory " + str(memory), "--left " + left, "--right " + right, "--SS_lib_type " + str(orientation), "--CPU " + str(cpus), "--output " + str(outputdir)]
-		print command
-		#subprocess.check_output(command)
+		subprocess.check_output(command)
 	else:
 		files = []
 		for i in os.listdir(inputdir):
@@ -83,5 +82,4 @@ if __name__ == "__main__":
 			single = single + item + ","
 		single = single.strip(",")		
 		command = ["Trinity", "--seqType fq" , "--max_memory " + str(memory), "--single " + single, "--SS_lib_type " + str(orientation), "--CPU " + str(cpus), "--output " + str(outputdir)]
-		print command
-		#subprocess.check_output(command)
+		subprocess.check_output(command)
