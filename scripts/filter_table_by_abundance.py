@@ -8,19 +8,13 @@ Description:
 This is an optional script filters the contigs less than a given threshold of relative expression. eg if e=1 \n Only Contigs with sum > 1/sum(Minimum Reads) are selected.
 Filters out contigs from both count table [output from map_reads_to_contigs.py] and fasta file of contigs assembled.
 
-
-Example
-Given an input count table and FATSA file generates a new count table and FASTA file that includes only contigs that have a relative expression of higher than the threshold specified by the user. 
-
-
 Dependencies:
 1. $CoMW/utils/Filteration.R
 2. Bio.Seq http://biopython.org/DIST/docs/api/Bio.Seq-module.html from biopython http://biopython.org  
 
-
 Example:
-python filter_table_by_abundance.py -i abundance_table.tsv -f contigs.fasta -e 1 -o out_prefix -r y 
-filters abundance_table.tsv and contigs.fasta using expression 1% and producing the new abundance table and contigs file with output prefix in same directory
+python filter_table_by_abundance.py -i $Abundance_table.tsv -f $Contigs.fasta -e 1 -o out_prefix -r y 
+Given an abundance table the script filters $Abundance_table.tsv and $Contigs.fasta using expression 1% and producing the new abundance table and contigs file with output prefix in same directory
 
 """
 
@@ -39,12 +33,12 @@ parser.add_argument("-i", "--inputfile", help= "Table file from BWA mapper outpu
 parser.add_argument("-f", "--fastafile", help= "Fasta file")
 parser.add_argument("-e", "--expression", help= "Relative expression in integars", type=int, default=1)
 parser.add_argument("-o", "--outputprefix", help= "Output prefix for filtered table and fasta file")
-parser.add_argument("-r", "--remove", help= "Delete temporary files created [y/n], default y", default = 'y' )
+parser.add_argument("-r", "--remove", help= "Delete temporary files created [y/n], default y", default = 'n' )
 args = parser.parse_args()
 if not args.inputfile: print "No input file provided"
 if not args.fastafile: print "No fasta file provided"
 if not args.outputprefix: print "No output prefix provided"
-if not (args.inputfile and args.outputprefix and args.fastafile): sys.exit(1)
+if not (args.inputfile or args.outputprefix or args.fastafile): sys.exit(1)
 if args.remove not in ['y','n']:sys.exit(1)
 
 
@@ -93,7 +87,4 @@ if __name__ == "__main__":
 	agree= args.remove
 	if agree is 'y':
 		shutil.rmtree(inputdir+"/TempFiles/")
-	
-
-	
-      
+	     

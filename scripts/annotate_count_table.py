@@ -1,4 +1,5 @@
 """
+
 Author: Muhammad Zohaib Anwar
 License: GPL v3.0\n\n
 
@@ -9,21 +10,18 @@ This script will annotate a given countatble against the database of choice from
 2. CAZy https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2686590/
 3. NCyc https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty741/5085377
 
-
 Dependencies:
 1. Databases and annotations in $CoMW/databases
 
-
 Example:
-python annotate_count_table.py -i counttable.tsv -o counttable_annotated.tsv -d 1 
-Given an input count table counttable.tsv is annotated using eggNOG hierarchial annotation
+python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 1 
+Given an input count table $Counttable.tsv is annotated using eggNOG hierarchial annotation
 
-python annotate_count_table.py -i counttable.tsv -o counttable_annotated.tsv -d 2 
-Given an input count table counttable.tsv is annotated using CAZy hierarchial annotation
+python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 2 
+Given an input count table $Counttable.tsv is annotated using CAZy hierarchial annotation
 
-python annotate_count_table.py -i counttable.tsv -o counttable_annotated.tsv -d 3 
-Given an input count table counttable.tsv is annotated using NCyc hierarchial annotation
-
+python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 3 
+Given an input count table $Counttable.tsv is annotated using NCyc hierarchial annotation
 
 """
 
@@ -52,8 +50,7 @@ def annotate_eggNOG(tabfile, outfile):
 	infile=f.readlines()
 	f.close()
 
-	##Reading Databases
-	f=open(dbdir+"/all.funcat.eggnogv3.txt",'r') #Reading Sword COG_cat dictionary
+	f=open(dbdir+"/all.funcat.eggnogv3.txt",'r')
 	lines=f.readlines()
 	f.close()
 
@@ -62,7 +59,6 @@ def annotate_eggNOG(tabfile, outfile):
 		items=items.strip()
 		fun_cat[items.split("\t")[0]]=items.split("\t")[1]
 
-	##1st Level of Function
 	levelI={}
 	levelI["J"]="INFORMATION STORAGE AND PROCESSING"
 	levelI["A"]="INFORMATION STORAGE AND PROCESSING"
@@ -95,8 +91,7 @@ def annotate_eggNOG(tabfile, outfile):
 
 	levelI["X"]="MOBILOME"
 	
-	##2nd Level of Function
-	f=open(dbdir+"/fun2003-2014.tab",'r') #Reading Sword COG_cat dictionary
+	f=open(dbdir+"/fun2003-2014.tab",'r')
 	lines=f.readlines()[1:]
 	f.close()
 
@@ -106,8 +101,7 @@ def annotate_eggNOG(tabfile, outfile):
 		levelII[items.split("\t")[0]]=items.split("\t")[1]
 	
 
-	##3rd Level of Function
-	f=open(dbdir+"/eggNOG.md52id2ont",'r') #Reading Sword COG_cat dictionary
+	f=open(dbdir+"/eggNOG.md52id2ont",'r')
 	lines=f.readlines()
 	f.close()
 	
@@ -223,7 +217,6 @@ def annotate_CAZy(tabfile,outfile):
 			EnzymeClass="Auxiliary Activities"
 		if "CBM" in tokens[0].split("|")[1]:
 			EnzymeClass="Carbohydrate-Binding Modules"
-		#print	tokens[0].split("|")[1]
 		Level2=tokens[0].split("|")[1]
 		lines[i]=lines[i]+"\tk__CAZy; p__"+EnzymeClass+"; c__"+Level2+"; o__; f__; g__; s__\n"
 		if len(tokens[0].split("|")) > 2:
@@ -303,9 +296,7 @@ def annotate_NCyc(tabfile, outfile):
 
 		
 		if Second_level in fun_cat:
-			#print Second_level
 			First_level_1=fun_cat[Second_level]
-			#print First_level_1
 			if "," in First_level_1:
 				First_level_2=First_level_1.split(",")[1]
 				First_level_1=First_level_1.split(",")[0]

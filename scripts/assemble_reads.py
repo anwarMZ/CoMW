@@ -1,34 +1,36 @@
 """
+
 Author: Muhammad Zohaib Anwar
 License: GPL v3.0\n\n
 
 
 Description:
-This is a wrapper script that assembles short reads to metatranscriptomic contigs using Trinity
-
+Trinity is the state-of-the-art transcriptomic assembler. Trinity can be used in independently however for a relatively straight-forward use we have wrapped it in this script which assembles transcriptomic short reads from NGS (MiSeq, HiSeq or NextSeq) reads to longer contigs. Short reads can be single or paired end as described in examples below.
 
 Dependencies:
 1. Trinity https://github.com/trinityrnaseq/trinityrnaseq
 
-
-
 Example:
+python assemble_reads.py -i $Fastq_dir -o $Output_dir -c 16 -m 100G -l paired -s RF
+Given an input directory $Fastq_dir {$[*]R1.fastq.gz, $[*]R2.fastq.gz}, paired-end RF orientation reads are assembled into contigs using Trinity in parallel with 16 cpus and 100G of memory.
+
+python assemble_reads.py -i $Fastq_dir -o $Output_dir -c 16 -m 100G -l single -s F
+Given an input directory $Fastq_dir {$[*].fastq.gz}, sinle F orientation reads are assembled into contigs using Trinity in parallel with 16 cpus and 100G of memory.
+
 """
 
 import subprocess
 import sys
 import argparse
 import os
-import csv
-import pandas
 import os.path as path
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-i", "--inputdir", help= "fastq file directory")
+parser.add_argument("-i", "--inputdir", help= "Fastq file directory")
 parser.add_argument("-o", "--outputdir", help= "Output directory")
-parser.add_argument("-c", "--cpus", help= "Number of Threads", type=int, default=1)
+parser.add_argument("-c", "--cpus", help= "Number of Threads to be used", type=int, default=1)
 parser.add_argument("-m", "--memory", help='Max-memory to be used in Gb e.g 20G', default = '20G')
-parser.add_argument("-l", "--libtype", help='single or paired')
+parser.add_argument("-l", "--libtype", help='Single or Paired-end library')
 parser.add_argument("-s", "--strandlibtype", help='Strand-specific RNA-Seq read orientation if paired: RF or FR, if single: F or R.')
 
 args = parser.parse_args()

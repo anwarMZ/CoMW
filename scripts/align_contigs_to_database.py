@@ -1,4 +1,5 @@
 """
+
 Author: Muhammad Zohaib Anwar
 License: GPL v3.0\n\n
 
@@ -10,23 +11,21 @@ This script will use SWORD to align the assembled contigs from previous step aga
 3. NCyc https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty741/5085377
 to provide alignment results in BM9 format using multiple threads. 
 
-
 Dependencies:
 1. Databases in $CoMW/databases
 2. SWORD aligner https://github.com/rvaser/sword
 3. EMBOSS Transeq - http://emboss.sourceforge.net/download/
 4. pyfasta - https://pypi.python.org/pypi/pyfasta/
 
-
 Example:
-python align_contigs_to_database.py -f contigs.fasta -s 12 -n 6 -o SWORD_result.tsv -t 12 -d 1 -r y
-Given an input FASTA file contigs.fasta  is aligned against Md5nr using 12 threads and 6 possible ORFs generated an alignment file SWORD_result.tsv. The input file is splitted into 12 parts after translation in order to save running memory 
+python align_contigs_to_database.py -f $Contigs.fasta -s 12 -n 6 -o $SWORD_result.tsv -t 12 -d 1 -r y
+Given an input FASTA file $Contigs.fasta  is aligned against Md5nr using 12 threads and 6 possible ORFs generated an alignment file $[*].tsv. The input file is splitted into 12 parts after translation in order to save running memory 
 
-python align_contigs_to_database.py -f contigs.fasta -s 12 -n 1 -o SWORD_result.tsv -t 12 -d 2 -r y
-Given an input FASTA file contigs.fasta  is aligned against CAZy using 12 threads and 1 possible ORFs generated an alignment file SWORD_result.tsv. The input file is splitted into 12 parts after translation in order to save running memory 
+python align_contigs_to_database.py -f $Contigs.fasta -s 12 -n 1 -o $SWORD_result.tsv -t 12 -d 2 -r y
+Given an input FASTA file $Contigs.fasta  is aligned against CAZy using 12 threads and 1 possible ORFs generated an alignment file $[*].tsv. The input file is splitted into 12 parts after translation in order to save running memory 
 
-python align_contigs_to_database.py -f contigs.fasta -s 12 -n 3 -o SWORD_result.tsv -t 12 -d 3 -r y
-Given an input FASTA file contigs.fasta  is aligned against NCyc using 12 threads and 3 possible ORFs generated an alignment file SWORD_result.tsv. The input file is splitted into 12 parts after translation in order to save running memory 
+python align_contigs_to_database.py -f $Contigs.fasta -s 12 -n 3 -o $SWORD_result.tsv -t 12 -d 3 -r y
+Given an input FASTA file $Contigs.fasta  is aligned against NCyc using 12 threads and 3 possible ORFs generated an alignment file $[*].tsv. The input file is splitted into 12 parts after translation in order to save running memory 
 
 
 """
@@ -45,45 +44,38 @@ import shutil
 
 ##Reading parapeters
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-f", "--inputfastafile", help= "fasta file of assembled contigs, output from Trinity", required=True )
-parser.add_argument("-s", "--splitsize", help= "number of parts to be splitted in", required=True, type=int, default = 1)
-parser.add_argument("-n", "--ORFs", help= "number of ORFs (1-6) to be calculated for alignment",required=True, type=int, default=1)
+parser.add_argument("-f", "--inputfastafile", help= "Fasta file of assembled contigs, output from Trinity", required=True )
+parser.add_argument("-s", "--splitsize", help= "Number of parts Fasta file to be splitted in", required=True, type=int, default = 1)
+parser.add_argument("-n", "--ORFs", help= "Number of ORFs (1-6) to be calculated for alignment",required=True, type=int, default=1)
 parser.add_argument("-o", "--outputfile", help= "Output file .tsv format",required=True)
-parser.add_argument("-t", "--threads", help= "number of threads to be run",required=True, type=int, default = 1)
+parser.add_argument("-t", "--threads", help= "Number of threads to be run",required=True, type=int, default = 1)
 parser.add_argument("-d", "--database", help= "Alignment database of choice 1: Md5nr, 2: CAZy, 3: NCyc", required=True, type=int, default = 1 )
-parser.add_argument("-r", "--remove", help= "remove temporary files [y/n]", default = 'y' )
+parser.add_argument("-r", "--remove", help= "Remove temporary files [y/n]", default = 'n' )
 args = parser.parse_args()
 if not args.inputfastafile: print "No input file provided"
 if not args.outputfile: print "No output file provided"
-if not (args.inputfastafile and args.outputfile): sys.exit(1)
+if not (args.inputfastafile or args.outputfile): sys.exit(1)
 if args.database not in [1,2,3]:sys.exit(1)
 if args.remove not in ['y','n']:sys.exit(1)
 
 
-###Translating the query input
 def translation(filename, orfs):
 	transeqcommand = "transeq -sformat pearson -clean -frame " + str(orfs) + " -sequence "+ str(filename) + " -outseq " + outputdir+"/TempFiles/"+transout
 	transeqargs = shlex.split(transeqcommand)
 	subprocess.call(transeqargs)
 
 
-###Splitting the translated file to save memory
 def split(filename, size):
 	splitcommand = "pyfasta split -n " + str(size) + " " + outputdir+"/TempFiles/"+transout
 	splitargs = shlex.split(splitcommand)
 	subprocess.call(splitargs)
 	
 
-###Running SWORD alignment
 def batchsword(fastalist, Subjectdatabase, threads):	
 	for i in fastalist:
 		command="sword -i "+ outputdir+"/TempFiles/"+ i +" -t " + str(threads) + " -o "+ outputdir+"/TempFiles/"+i[:i.index(".fasta")]+".result.tsv -f bm9 -j " + Subjectdatabase + " -c 30000 -v 1.0"
 		swordargs = shlex.split(command)
 		subprocess.call(swordargs)
-
-
-
-##Reading directories & Paths
 
 CoMWdir = os.path.realpath(__file__)
 dbdir =  path.abspath(path.join(__file__ ,"../../databases"))
@@ -93,7 +85,6 @@ inputdir, inputfile = os.path.split(args.inputfastafile)
 
 
 if __name__ == "__main__":
-	##Reading database selected
 	
 	if not os.path.exists(outputdir+"/TempFiles"):
 		os.makedirs(outputdir+"/TempFiles")
@@ -103,16 +94,11 @@ if __name__ == "__main__":
 	translation(filename = inputdir+"/"+inputfile, orfs = n)
 	print "\n\nTranslation done"	
 
-
-	
-	###Splitting Translated Fasta File to pieces
 	n=args.splitsize
 	print "\n\nSplitting translated fasta file into "+str(n)+ " to use less memory"
 	split(filename = outputdir+"/"+transout, size=n)
 	print "\n\nSplitting done"
 
-	
-	###Selecting files to run SWORD
 	files=[]
 	x=os.listdir(outputdir+"/TempFiles/")
 	for i in x:
@@ -136,7 +122,6 @@ if __name__ == "__main__":
 	else:
 		print "Wrong input for database: Only options 1,2 & 3, see help with -h"
 
-	##Merging indivdual SWORD runs	
 	for f in files:
 		os.system("cat "+outputdir+"/TempFiles/"+f.replace(".fasta",".result.tsv")+" >> " + outputdir+"/"+outputfile)
 	agree= args.remove

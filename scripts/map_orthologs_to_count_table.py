@@ -1,4 +1,5 @@
 """
+
 Author: Muhammad Zohaib Anwar
 License: GPL v3.0\n\n
 
@@ -6,16 +7,12 @@ License: GPL v3.0\n\n
 Description:
 This script will map the aligned genes to the count table using the map generated in parse_sword.py 
 
-
 Dependencies:
 1. $CoMW/utils/AggregateTables.R
 
-
 Example:
-python map_orthologs_to_count_table.py -i abundance_table.tsv -m SWORD_result_eggNOG.map -o eggNOG_Counttable.tsv 
-Given an input abundance table abundance_table.tsv this script maps the identified genes using the map generated in parse_sword.py
-
-
+python map_orthologs_to_count_table.py -i $Abundance_table.tsv -m $SWORD_result_eggNOG.map -o $ggNOG_Counttable.tsv 
+Given an input abundance table $abundance_table.tsv this script maps the identified genes using the map generated in parse_sword.py
 
 """
 
@@ -34,7 +31,7 @@ args = parser.parse_args()
 if not args.inputfile: print "No input file provided"
 if not args.outputfile: print "No output file provided"
 if not args.mapfile: print "No map file provided"
-if not (args.inputfile and args.outputfile and args.mapfile): sys.exit(1)
+if not (args.inputfile or args.outputfile or args.mapfile): sys.exit(1)
 
 CoMWdir = os.path.realpath(__file__)
 utildir = path.abspath(path.join(__file__ ,"../../utils"))

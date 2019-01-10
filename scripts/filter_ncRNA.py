@@ -5,23 +5,16 @@ License: GPL v3.0\n\n
 
 
 Description:
-This is an optional script that filters the non-coding RNAs from the assembled contigs based on the alignment against RFam database.
-
-
-Example
-Given an input FATSA file generates a new FASTA file that includes only contigs that have filtered non-coding RNAs from the contigs based on the confidence threshold provided by the user. 
-
+This is a script that uses Infernal (a secondary-structure-aware aligner). cmsearch module of the infernal predicts the secondary structure of RNA sequences and similarities based on the consensus structure models of RFam. This script uses the $utils/parsecm.py then to parse the oputput and filter the non-coding RNA contigs based on the confidence threshold of alignment.
 
 Dependencies:
 1. $CoMW/utils/parsecm.py
 2. Bio.Seq http://biopython.org/DIST/docs/api/Bio.Seq-module.html from biopython http://biopython.org  
 3. Infernal in path http://eddylab.org/infernal/
 
-
 Example:
-python filter_ncRNA.py -f contigs.fasta -e 3 -t 16 -o contigs_ncrna_filtered.fasta -r y
- -e 1 -o out_prefix -r y 
-filters contigs.fasta using ncRNA database and produces filtered contigs file
+python filter_ncRNA.py -f $Contigs.fasta -e 3 -t 16 -o $Contigs_ncrna_filtered.fasta -r n
+Given an input fasta file $Contigs.fasta the script uses infernal to align the RNA contigs using 16 threads in parallel against RFam and filter the non-coding RNAs with a confidence threshold of 1E-1 and write to $Contigs_ncRNA_filtered.fasta
 
 """
 
@@ -39,16 +32,16 @@ from Bio.SeqIO import FastaIO
 
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-f", "--fastafile", help= "Fasta file")
-parser.add_argument("-e", "--evalue", help= "Evalue in integar", type=int, default=1)
-parser.add_argument("-t", "--threads", help= "Number of Threads", type=int, default=1)
-parser.add_argument("-o", "--outputfile", help= "Output file for fasta file")
-parser.add_argument("-r", "--remove", help= "Delete temporary files created [y/n], default y", default = 'y' )
+parser.add_argument("-f", "--fastafile", help= "Input fasta file")
+parser.add_argument("-e", "--evalue", help= "E-value in integar", type=int, default=1)
+parser.add_argument("-t", "--threads", help= "Number of threads", type=int, default=1)
+parser.add_argument("-o", "--outputfile", help= "Output fasta file")
+parser.add_argument("-r", "--remove", help= "Delete temporary files created [y/n], default y", default = 'n')
 
 args = parser.parse_args()
 if not args.fastafile: print "No fasta file provided"
 if not args.outputfile: print "No output prefix provided"
-if not (args.outputfile and args.fastafile): sys.exit(1)
+if not (args.outputfile or args.fastafile): sys.exit(1)
 if args.remove not in ['y','n']:sys.exit(1)
 
 
@@ -65,18 +58,15 @@ def filter_fasta(fastafile_formatted, idfile):
 	f=open(idfile,'r')
 	lines=f.readlines()
 	f.close()
-
 	ids=[]
 	for i in range(1,len(lines)):
 		lines[i]=lines[i].strip()
 		ids.append(lines[i])
-		
 	f=open(outputdir+"/"+outputfile,'w')
 	for record in SeqIO.parse(fastafile_formatted,'fasta'):
 		if record.id not in ids:
 			f.write(">"+str(record.id)+"\n")
 			f.write(str(record.seq)+"\n")
-
 	f.close()
 
 
@@ -86,7 +76,7 @@ utildir = path.abspath(path.join(__file__ ,"../../utils"))
 fastadir, fastaf = os.path.split(args.fastafile)
 outputdir, outputfile = os.path.split(args.outputfile)
 cpus = args.threads
-e=str(args.evalue)
+e = str(args.evalue)
 head, tail = os.path.splitext(fastaf)
 
 
