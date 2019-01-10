@@ -1,8 +1,10 @@
 ## CoMW
 
-Comparative Metatranscriptomics Workflow is a standardized and validated workflow to functionally classify quality filtered mRNA reads from metatranscriptomic or total RNA studiesgenerated using HiSeq, MiSeq. CoMW is used for classification of these reads using assembled contigs to the reference databases provided and cited. 
+Comparative Metatranscriptomics Workflow is a standardized and validated workflow to functionally classify quality filtered mRNA reads from metatranscriptomic or total RNA studies generated using NGS short reads. CoMW is used for classification of these reads using assembled contigs to the reference databases provided and cited. 
 
 If you use CoMW in your research, please cite:
+
+Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to resemble – benchmarking of metatranscriptomic practices and a validated Comparative Metatranscriptomics Workflow (CoMW), _GigaScience_,[Under Review]
 
 
 For queries use issues or contact : mzanwar@envs.au.dk
