@@ -7,7 +7,7 @@ If you use CoMW in your research, please cite:
 Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to resemble – benchmarking of metatranscriptomic practices and a validated Comparative Metatranscriptomics Workflow (CoMW), _GigaScience_,[Under Review]
 
 
-For queries use issues or contact : mzanwar@envs.au.dk
+For queries or issues please contact : mzanwar@envs.au.dk
 
 # Installation
 
