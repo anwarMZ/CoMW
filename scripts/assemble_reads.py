@@ -57,8 +57,11 @@ if __name__ == "__main__":
 	if lib == 'paired':
 		R1 = []
 		R2 = []
+		#print os.listdir(inputdir)
 		for i in os.listdir(inputdir):
-			if 'R1' in i:	
+						
+			if 'R1' in i:
+				
 				R1.append(i)
 			else:
 				R2.append(i)
@@ -67,10 +70,11 @@ if __name__ == "__main__":
 		for item in sorted(R1):
 			left = left + item + ","
 		left = left.strip(",")		
-		for item in sorted(R2):
-			right = left + item + ","
+		for itemx in sorted(R2):
+			right = right + itemx + ","
 		right = right.strip(",")
-		command = ["Trinity", "--seqType fq" , "--max_memory " + str(memory), "--left " + left, "--right " + right, "--SS_lib_type " + str(orientation), "--CPU " + str(cpus), "--output " + str(outputdir)]
+			
+		command = ["Trinity", "--seqType fq" , "--max_memory", str(memory), "--left", left, "--right", right, "--SS_lib_type", str(orientation), "--CPU", str(cpus), "--output", str(outputdir)]
 		subprocess.check_output(command)
 	else:
 		files = []
