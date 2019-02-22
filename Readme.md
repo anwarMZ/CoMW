@@ -31,17 +31,21 @@ http://tiny.cc/CoMW_DBS
 
 These scripts are written in Python and detailed parameters and dependdencies are along with usage examples are given in CoMW user manual CoMW_Manual.pdf
 
-1. map_reads_to_contigs.py
+1. assemble_reads.py
 
-2. filter_table_by_abundance.py [Optional]
+2. filter_ncRNAs.py
 
-3. align_contigs_to_database.py
+3. map_reads_to_contigs.py
 
-4. parse_sword.py
+4. filter_table_by_abundance.py [Optional]
 
-5. map_orthologs_to_count_table.py
+5. align_contigs_to_database.py
 
-6. annotate_count_table.py
+6. parse_sword.py
+
+7. map_orthologs_to_count_table.py
+
+8. annotate_count_table.py
 
 
 

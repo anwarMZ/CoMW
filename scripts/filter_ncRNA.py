@@ -86,10 +86,10 @@ if __name__ == "__main__":
 		os.makedirs(outputdir+"/TempFiles")
 	print "Running Infernal to detect ncRNAs\n"
 	command=["cmsearch", "--cpu "+str(cpus), "-o "+outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), dbdir+"/"+"Rfam.cm" , fastadir+"/"+fastaf]
-	subprocess.check_output(command)
+	subprocess.call(command)
 	print "Parsing Output\n"
 	command = ["python", utildir+"/parsecm.py", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), "1E-"+e]
-	subprocess.check_output(command)
+	subprocess.call(command)
 	print "ncRNAs predicted\n"
 	print "Filtering FASTA file provided\n"
 	multi2linefasta(fastafile = fastadir+"/"+fastaf)
