@@ -27,7 +27,7 @@ svg('./TempFiles/MeanRealtiveContigExpression.svg')
 hist(log10(rowMeans(cagr)),col="grey",main="Mean relative contig expression")
 dev.off()
 
-exp=as.numeric(args[3])
+exp=as.double(args[3])
 included_contigs = row.names(cagr)[(rowMeans(cagr)>=exp/minReads)]
 write.table(included_contigs,sep="\t",file=paste(args[1],"/TempFiles/",args[4],"_IncludedContigs.txt",sep=""),quote = FALSE)
 cagKeep = cag[(rowMeans(cagr)>=exp/minReads),]
