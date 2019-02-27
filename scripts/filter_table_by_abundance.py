@@ -31,7 +31,7 @@ import os.path as path
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
 parser.add_argument("-i", "--inputfile", help= "Table file from BWA mapper output")
 parser.add_argument("-f", "--fastafile", help= "Fasta file")
-parser.add_argument("-e", "--expression", help= "Relative expression in integars", type=int, default=1)
+parser.add_argument("-e", "--expression", help= "Relative expression in integars", default=1)
 parser.add_argument("-o", "--outputprefix", help= "Output prefix for filtered table and fasta file")
 parser.add_argument("-r", "--remove", help= "Delete temporary files created [y/n], default y", default = 'n' )
 args = parser.parse_args()
