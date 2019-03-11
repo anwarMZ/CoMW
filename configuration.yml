@@ -18,3 +18,4 @@ dependencies:
   - trinity=2.1.1
   - emboss=6.6.0
   - bwa=0.7.17
+  - gcc=4.8.2
