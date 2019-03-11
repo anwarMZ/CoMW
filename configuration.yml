@@ -17,4 +17,4 @@ dependencies:
   - sortmerna=2.1b
   - trinity=2.1.1
   - emboss=6.6.0
-  - bwa=0.717
+  - bwa=0.7.17
