@@ -10,11 +10,11 @@ dependencies:
   - pandas=0.17.1
   - csvkit=1.0.3
   - r-base=3.2.2
-  - r-vegan=2.5-3
+  - r-vegan=2.5.3
   - r-plyr=1.8.4
   - r-reshape2=1.4.2
   - infernal=1.1.1
   - sortmerna=2.1b
-  - trinity=2.1.
+  - trinity=2.1.1
   - emboss=6.6.0
   - bwa=0.717
