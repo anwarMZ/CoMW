@@ -24,4 +24,4 @@ dependencies:
   - cmake
   - cython
   - libtool
-  - Glibc
+  - glibc
