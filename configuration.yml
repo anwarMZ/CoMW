@@ -19,3 +19,9 @@ dependencies:
   - emboss=6.6.0
   - bwa=0.7.17
   - gcc=4.8.2
+  - libc=2.21
+  - gcc_linux-64
+  - gxx_linux-64
+  - cmake
+  - cython
+  - libtool
