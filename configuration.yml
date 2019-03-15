@@ -4,6 +4,7 @@ channels:
   - defaults
   - conda-forge
   - asmeurer
+  - groakat
 dependencies:
   - python=2.7
   - pyfasta=0.5.2
@@ -24,3 +25,4 @@ dependencies:
   - cython
   - libtool
   - glibc
+  - libc
