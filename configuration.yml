@@ -277,7 +277,7 @@ dependencies:
   - tzlocal=1.3=py35_0
   - pyfasta=0.5.2
   - biopython=1.66
-  - pandas=0.17.1
+  - pandas=0.19.2
   - csvkit=1.0.3
   - r-vegan=2.5.3
   - infernal=1.1.1
