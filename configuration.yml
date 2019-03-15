@@ -111,7 +111,7 @@ dependencies:
   - decorator=4.3.0=py_0
   - entrypoints=0.2.3=py35_2
   - expat=2.2.5=hfc679d8_2
-    - pigz=2.3.4=0
+  - pigz=2.3.4=0
   - pip=18.0=py35_1001
   - pixman=0.34.0=h470a237_3
   - prometheus_client=0.4.2=py_0
