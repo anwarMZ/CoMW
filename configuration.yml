@@ -3,6 +3,7 @@ channels:
   - bioconda
   - defaults
   - conda-forge
+  - asmeurer
 dependencies:
   - python=2.7
   - pyfasta=0.5.2
