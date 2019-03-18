@@ -34,10 +34,10 @@ parser.add_argument("-l", "--libtype", help='Single or Paired-end library')
 parser.add_argument("-s", "--strandlibtype", help='Strand-specific RNA-Seq read orientation if paired: RF or FR, if single: F or R.')
 
 args = parser.parse_args()
-if not args.inputdir: print "No input reads directory provided"
-if not args.outputdir: print "No output directory provided"
-if not args.libtype: print "Please specify single or paired-end library"
-if not args.strandlibtype: print "Please specify Strand-orientation"
+if not args.inputdir: print("No input reads directory provided")
+if not args.outputdir: print("No output directory provided")
+if not args.libtype: print("Please specify single or paired-end library")
+if not args.strandlibtype: print("Please specify Strand-orientation")
 if not (args.inputdir or args.outputdir or args.libtype or args.strandlibtype): sys.exit(1)
 
 
@@ -57,9 +57,7 @@ if __name__ == "__main__":
 	if lib == 'paired':
 		R1 = []
 		R2 = []
-		#print os.listdir(inputdir)
-		for i in os.listdir(inputdir):
-						
+		for i in os.listdir(inputdir):			
 			if 'R1' in i:
 				
 				R1.append(i)
@@ -76,7 +74,6 @@ if __name__ == "__main__":
 
 		command = ["Trinity", "--seqType fq", "--max_memory " + str(memory), "--left "+ left, "--right "+right, "--SS_lib_type "+ str(orientation), "--CPU "+ str(cpus), "--output "+ str(outputdir)]
 		subprocess.call(command)
-		
 
 	else:
 		files = []
