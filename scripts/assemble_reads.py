@@ -70,7 +70,7 @@ if __name__ == "__main__":
 		for itemx in sorted(R2):
 			right = right + inputdir+"/"+itemx + ","
 		right = right.strip(",")
-		command = ["Trinity", "--seqType fq", "--max_memory " + str(memory), "--left "+ left, "--right "+right, "--SS_lib_type "+ str(orientation), "--CPU "+ str(cpus), "--output "+ str(outputdir)]
+		command = ["Trinity", "--seqType", "fq", "--max_memory", str(memory), "--left", left, "--right", right, "--SS_lib_type",str(orientation), "--CPU",str(cpus), "--output", str(outputdir)]
 		print(command)
 		subprocess.call(command)
 
