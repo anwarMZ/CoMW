@@ -39,7 +39,6 @@ parser.add_argument("-s", "--strandlibtype", help='Strand-specific RNA-Seq read 
 requiredName = parser.add_argument_group('required arguments')
 requiredName.add_argument("-i", "--inputdir", help= "Fastq file directory")
 requiredName.add_argument("-o", "--outputdir", help= "Output directory")
-parser.parse_args(['-h'])
 
 
 args = parser.parse_args()
