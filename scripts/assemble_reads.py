@@ -32,19 +32,20 @@ import os
 import os.path as path
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-i", "--inputdir", help= "Fastq file directory")
-parser.add_argument("-o", "--outputdir", help= "Output directory")
 parser.add_argument("-c", "--cpus", help= "Number of Threads to be used", type=int, default=1)
 parser.add_argument("-m", "--memory", help='Max-memory to be used in Gb e.g 20G', default = '20G')
 parser.add_argument("-l", "--libtype", help='single- or paired-end library e.g paired')
 parser.add_argument("-s", "--strandlibtype", help='Strand-specific RNA-Seq read orientation if paired: RF or FR, if single: F or R.')
+requiredNamed = parser.add_argument_group('required arguments')
+requiredName.add_argument("-i", "--inputdir", help= "Fastq file directory")
+requiredName.add_argument("-o", "--outputdir", help= "Output directory")
+parser.parse_args(['-h'])
+
 
 args = parser.parse_args()
 if not args.inputdir: print("No input reads directory provided")
 if not args.outputdir: print("No output directory provided")
-if not args.libtype: print("Please specify single or paired-end library")
-if not args.strandlibtype: print("Please specify Strand-orientation")
-if not (args.inputdir or args.outputdir or args.libtype or args.strandlibtype): sys.exit(1)
+if not (args.inputdir or args.outputdir): sys.exit(1)
 
 
 CoMWdir = os.path.realpath(__file__)
