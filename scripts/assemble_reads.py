@@ -57,9 +57,9 @@ if __name__ == "__main__":
 	if lib == 'paired':
 		R1 = []
 		R2 = []
-		for i in os.listdir(inputdir):			
+		for i in os.listdir(inputdir):	
+			print(inputdir)		
 			if 'R1' in i:
-				
 				R1.append(i)
 			else:
 				R2.append(i)
