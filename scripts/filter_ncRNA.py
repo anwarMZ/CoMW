@@ -94,18 +94,18 @@ if __name__ == "__main__":
 	print("Running Infernal to detect ncRNAs\n")
 	print(outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"))
 	command=["cmsearch", "--cpu", str(cpus), "-o", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), dbdir+"/"+"Rfam.cm" , fastadir+"/"+fastaf]
-	#subprocess.call(command)
+	subprocess.call(command)
 	print(fastadir+"/"+fastaf)
 	print("Parsing Output\n")
 	command = ["python", utildir+"/parsecm.py", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), "1E-"+e]
-	#subprocess.call(command)
+	subprocess.call(command)
 	print("ncRNAs predicted\n")
 	print("Filtering FASTA file provided\n")
 	print(fastadir+"/"+fastaf)
-	#multi2linefasta(fastafile = fastadir+"/"+fastaf)
+	multi2linefasta(fastafile = fastadir+"/"+fastaf)
 	print(fastadir+"/"+fastaf.replace(tail,"_formatted"+tail))
 	print( outputdir +"/"+fastaf.replace(".fasta","_cmsearchncRNA.txt"))
-	#filter_fasta(fastafile_formatted = fastadir+"/"+fastaf.replace(tail,"_formatted"+tail), idfile = outputdir +"/"+fastaf.replace(".fasta","_cmsearchncRNA.txt"))
+	filter_fasta(fastafile_formatted = fastadir+"/"+fastaf.replace(tail,"_formatted"+tail), idfile = outputdir +"/"+fastaf.replace(".fasta","_cmsearchncRNA.txt"))
 	print("FASTA file filtered\n")
 	agree= args.remove
 	if agree is 'y':
