@@ -5,16 +5,20 @@ License: GPL v3.0\n\n
 
 
 Description:
-This is a script that uses Infernal (a secondary-structure-aware aligner). cmsearch module of the infernal predicts the secondary structure of RNA sequences and similarities based on the consensus structure models of RFam. This script uses the $utils/parsecm.py then to parse the oputput and filter the non-coding RNA contigs based on the confidence threshold of alignment.
+This is a script that uses Infernal (a secondary-structure-aware aligner). cmsearch module
+of the infernal predicts the secondary structure of RNA sequences and similarities based 
+on the consensus structure models of RFam. This script uses the $utils/parsecm.py then to
+parse the oputput and filter the non-coding RNA contigs based on the confidence threshold
+of alignment.
 
 Dependencies:
 1. $CoMW/utils/parsecm.py
-2. Bio.Seq http://biopython.org/DIST/docs/api/Bio.Seq-module.html from biopython http://biopython.org  
-3. Infernal in path http://eddylab.org/infernal/
 
 Example:
 python filter_ncRNA.py -f $Contigs.fasta -e 3 -t 16 -o $Contigs_ncrna_filtered.fasta -r n
-Given an input fasta file $Contigs.fasta the script uses infernal to align the RNA contigs using 16 threads in parallel against RFam and filter the non-coding RNAs with a confidence threshold of 1E-1 and write to $Contigs_ncRNA_filtered.fasta
+Given an input fasta file $Contigs.fasta the script uses infernal to align the RNA contigs
+using 16 threads in parallel against RFam and filter the non-coding RNAs with a confidence
+threshold of 1E-1 and write to $Contigs_ncRNA_filtered.fasta
 
 """
 
@@ -32,15 +36,18 @@ from Bio.SeqIO import FastaIO
 
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-f", "--fastafile", help= "Input fasta file")
 parser.add_argument("-e", "--evalue", help= "E-value in integar", type=int, default=1)
 parser.add_argument("-t", "--threads", help= "Number of threads", type=int, default=1)
-parser.add_argument("-o", "--outputfile", help= "Output fasta file")
 parser.add_argument("-r", "--remove", help= "Delete temporary files created [y/n], default y", default = 'n')
+requiredName = parser.add_argument_group('required arguments')
+requiredName.add_argument("-f", "--fastafile", help= "Input fasta file")
+requiredName.add_argument("-o", "--outputfile", help= "Output fasta file")
+
+
 
 args = parser.parse_args()
-if not args.fastafile: print "No fasta file provided"
-if not args.outputfile: print "No output prefix provided"
+if not args.fastafile: print("No fasta file provided")
+if not args.outputfile: print("No output prefix provided")
 if not (args.outputfile or args.fastafile): sys.exit(1)
 if args.remove not in ['y','n']:sys.exit(1)
 
@@ -84,18 +91,17 @@ if __name__ == "__main__":
 
 	if not os.path.exists(outputdir+"/TempFiles"):
 		os.makedirs(outputdir+"/TempFiles")
-	print "Running Infernal to detect ncRNAs\n"
-	command=["cmsearch", "--cpu "+str(cpus), "-o "+outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), dbdir+"/"+"Rfam.cm" , fastadir+"/"+fastaf]
+	print("Running Infernal to detect ncRNAs\n")
+	command=["cmsearch", "--cpu", str(cpus), "-o", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), dbdir+"/"+"Rfam.cm" , fastadir+"/"+fastaf]
 	subprocess.call(command)
-	print "Parsing Output\n"
+	print("Parsing Output\n")
 	command = ["python", utildir+"/parsecm.py", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), "1E-"+e]
 	subprocess.call(command)
-	print "ncRNAs predicted\n"
-	print "Filtering FASTA file provided\n"
+	print("ncRNAs predicted\n")
+	print("Filtering FASTA file provided\n")
 	multi2linefasta(fastafile = fastadir+"/"+fastaf)
 	filter_fasta(fastafile_formatted = fastadir+"/"+fastaf.replace(tail,"_formatted"+tail), idfile = outputdir +"/"+fastaf.replace(".fasta","_cmsearchncRNA.txt"))
-	print "FASTA file filtered\n"
+	print("FASTA file filtered\n")
 	agree= args.remove
 	if agree is 'y':
 		shutil.rmtree(fastadir+"/TempFiles/")
-	
