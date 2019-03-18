@@ -24,7 +24,7 @@ dependencies:
   - collectl=4.0.4=2
   - cutadapt=1.18=py35_0
   - deblur=1.1.0=py35_0
-  - java-jdk=8.45.14
+  - java-jdk=8.0.92=1
   - jellyfish=2.2.10=h2d50403_0
   - libarbdb=6.0.6=h5901010_6
   - libdeflate=1.0=h470a237_0
