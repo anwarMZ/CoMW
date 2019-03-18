@@ -36,7 +36,7 @@ parser.add_argument("-c", "--cpus", help= "Number of Threads to be used", type=i
 parser.add_argument("-m", "--memory", help='Max-memory to be used in Gb e.g 20G', default = '20G')
 parser.add_argument("-l", "--libtype", help='single- or paired-end library e.g paired')
 parser.add_argument("-s", "--strandlibtype", help='Strand-specific RNA-Seq read orientation if paired: RF or FR, if single: F or R.')
-requiredNamed = parser.add_argument_group('required arguments')
+requiredName = parser.add_argument_group('required arguments')
 requiredName.add_argument("-i", "--inputdir", help= "Fastq file directory")
 requiredName.add_argument("-o", "--outputdir", help= "Output directory")
 parser.parse_args(['-h'])
