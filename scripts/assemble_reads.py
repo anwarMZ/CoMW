@@ -73,6 +73,7 @@ if __name__ == "__main__":
 		right = right.strip(",")
 
 		command = ["Trinity", "--seqType fq", "--max_memory " + str(memory), "--left "+ left, "--right "+right, "--SS_lib_type "+ str(orientation), "--CPU "+ str(cpus), "--output "+ str(outputdir)]
+		print(command)
 		subprocess.call(command)
 
 	else:
