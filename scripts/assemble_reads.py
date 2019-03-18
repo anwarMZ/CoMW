@@ -5,17 +5,23 @@ License: GPL v3.0\n\n
 
 
 Description:
-Trinity is the state-of-the-art transcriptomic assembler. Trinity can be used in independently however for a relatively straight-forward use we have wrapped it in this script which assembles transcriptomic short reads from NGS (MiSeq, HiSeq or NextSeq) reads to longer contigs. Short reads can be single or paired end as described in examples below.
+Trinity is the state-of-the-art denovo metatranscriptomic assembler. Trinity can be used 
+independently however for a relatively straight-forward use we have wrapped it in this
+script which assembles metatranscriptomic short reads from NGS (MiSeq, HiSeq or NextSeq)
+to longer contigs. Short reads can be single or paired end as described in examples below.
 
 Dependencies:
 1. Trinity https://github.com/trinityrnaseq/trinityrnaseq
 
 Example:
 python assemble_reads.py -i $Fastq_dir -o $Output_dir -c 16 -m 100G -l paired -s RF
-Given an input directory $Fastq_dir {$[*]R1.fastq.gz, $[*]R2.fastq.gz}, paired-end RF orientation reads are assembled into contigs using Trinity in parallel with 16 cpus and 100G of memory.
+Given an input directory $Fastq_dir {$[*]R1.fastq.gz, $[*]R2.fastq.gz}, paired-end RF
+orientation reads are assembled into contigs using Trinity in parallel with 16 cpus and 
+100G of memory.
 
 python assemble_reads.py -i $Fastq_dir -o $Output_dir -c 16 -m 100G -l single -s F
-Given an input directory $Fastq_dir {$[*].fastq.gz}, sinle F orientation reads are assembled into contigs using Trinity in parallel with 16 cpus and 100G of memory.
+Given an input directory $Fastq_dir {$[*].fastq.gz}, sinle F orientation reads are 
+assembled into contigs using Trinity in parallel with 16 cpus and 100G of memory.
 
 """
 
@@ -30,7 +36,7 @@ parser.add_argument("-i", "--inputdir", help= "Fastq file directory")
 parser.add_argument("-o", "--outputdir", help= "Output directory")
 parser.add_argument("-c", "--cpus", help= "Number of Threads to be used", type=int, default=1)
 parser.add_argument("-m", "--memory", help='Max-memory to be used in Gb e.g 20G', default = '20G')
-parser.add_argument("-l", "--libtype", help='Single or Paired-end library')
+parser.add_argument("-l", "--libtype", help='single- or paired-end library e.g paired')
 parser.add_argument("-s", "--strandlibtype", help='Strand-specific RNA-Seq read orientation if paired: RF or FR, if single: F or R.')
 
 args = parser.parse_args()
@@ -71,7 +77,6 @@ if __name__ == "__main__":
 			right = right + inputdir+"/"+itemx + ","
 		right = right.strip(",")
 		command = ["Trinity", "--seqType", "fq", "--max_memory", str(memory), "--left", left, "--right", right, "--SS_lib_type",str(orientation), "--CPU",str(cpus), "--output", str(outputdir)]
-		print(command)
 		subprocess.call(command)
 
 	else:
@@ -83,5 +88,5 @@ if __name__ == "__main__":
 		for item in files:
 			single = single + item + ","
 		single = single.strip(",")		
-		command = ["Trinity", "--seqType fq" , "--max_memory " + str(memory), "--single " + single, "--SS_lib_type " + str(orientation), "--CPU " + str(cpus), "--output " + str(outputdir)]
+		command = ["Trinity", "--seqType", "fq" , "--max_memory", str(memory), "--single", single, "--SS_lib_type", str(orientation), "--CPU", str(cpus), "--output", str(outputdir)]
 		subprocess.call(command)
