@@ -136,6 +136,7 @@ if __name__=="__main__":
         else:
             mt.parse(float(sys.argv[2]))
         #print("\n----------------------\n")
+    
     ncRNA = open(inputdir+"/"+inputfile.replace(".out","ncRNA.txt"),"w")
         for Model in mt.models.values():
             Model.printReadNumber(ampnoise_us_annotation)
