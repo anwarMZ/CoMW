@@ -125,8 +125,8 @@ if __name__=="__main__":
                 -underscore : Fasta file has underscore AmpliconNoise style annotation for abundance\n \
                 -old : support for older infernal (before v1.1)\n")
     else:
-	inputdir, inputfile = os.path.split(sys.argv[1])	
-	mt = CmsearchOut(inputdir+"/"+inputfile)
+		inputdir, inputfile = os.path.split(sys.argv[1])	
+		mt = CmsearchOut(inputdir+"/"+inputfile)
 	        
         if (len(sys.argv)>3 and sys.argv[3]=="-underscore") or (len(sys.argv)>4 and sys.argv[4]=="-underscore"):
             ampnoise_us_annotation = True
