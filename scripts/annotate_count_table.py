@@ -32,12 +32,13 @@ import os
 import os.path as path
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-i", "--inputfile", help= "Table file from mapping output", required=True )
-parser.add_argument("-o", "--outputfile", help= "Output file .tsv format",required=True)
 parser.add_argument("-d", "--database", help= "1: Md5nr, 2: CAZy, 3: NCyc",  type=int, default = 1 )
+requiredName = parser.add_argument_group('required arguments')
+requiredName.add_argument("-i", "--inputfile", help= "Table file from mapping output", required=True )
+requiredName.add_argument("-o", "--outputfile", help= "Output file .tsv format",required=True)
 args = parser.parse_args()
-if not args.inputfile: print "No input file provided"
-if not args.outputfile: print "No output file provided"
+if not args.inputfile: print("No input file provided")
+if not args.outputfile: print("No output file provided")
 if not (args.inputfile and args.outputfile): sys.exit(1)
 db=int(args.database)
 if args.database not in [1,2,3]:sys.exit(1)

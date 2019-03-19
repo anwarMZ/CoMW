@@ -5,20 +5,23 @@ License: GPL v3.0\n\n
 
 
 Description:
-This script aligns quality filtered mRNA (merged or paired-end reads) against the assembled contigs from RNA-Seq de novo transcriptome assemblers (e.g. Trinity). 
-Given a directory with FASTQ files merged or paired-end and a FASTA file consisting the assembled contigs, the script aligns using BWA mapper and produces an abundance table. 
-This script can be parallelized using the threads option -t. 
+This script aligns quality filtered mRNA (merged or paired-end reads) against the assembled
+contigs from RNA-Seq de novo transcriptome assemblers (e.g. Trinity). Given a directory 
+with FASTQ files merged or paired-end and a FASTA file consisting the assembled contigs,
+the script aligns using BWA mapper and produces an abundance table. This script can be 
+parallelized using the threads option -t. 
 
 Dependencies:
-1. BWA mapper http://bio-bwa.sourceforge.net/
-2. $CoMW/utils/MapReads_to_contigs.sh
+1. $CoMW/utils/MapReads_to_contigs.sh
 
 Example:
 python map_reads_to_contigs.py -f $Contigs.fasta -i $Fastq_dir -o $Output_dir -t 12 -m n 
-aligns paired-end fastq reads present in $Fastq_dir against contigs.fasta using 12 threads and producing the abundance table in $Output_dir
+aligns paired-end fastq reads present in $Fastq_dir against contigs.fasta using 12 threads
+and producing the abundance table in $Output_dir
 
 python map_reads_to_contigs.py -f $Contigs.fasta -i $Fastq_dir -o $Output_dir -t 16 -m y 
-aligns merged fastq reads present in $Fastq_dir against contigs.fasta using 16 threads and producing the abundance table in $Output_dir
+aligns merged fastq reads present in $Fastq_dir against contigs.fasta using 16 threads and
+producing the abundance table in $Output_dir
 
 """
 
@@ -31,15 +34,18 @@ import pandas
 import os.path as path
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-f", "--fastafile", help= "Fasta file of contigs")
-parser.add_argument("-i", "--readsdir", help= "Fastq file directory")
-parser.add_argument("-o", "--outputfile", help= "Output file")
 parser.add_argument("-t", "--threads", help= "Number of Threads", type=int, default=1)
 parser.add_argument("-m", "--merged", help='Single or Paired-end, default = paired]', default = 'paired')
+requiredName = parser.add_argument_group('required arguments')
+requiredName.add_argument("-f", "--fastafile", help= "Fasta file of contigs")
+requiredName.add_argument("-i", "--readsdir", help= "Fastq file directory")
+requiredName.add_argument("-o", "--outputfile", help= "Output file")
+
+
 args = parser.parse_args()
-if not args.fastafile: print "No contigs file provided"
-if not args.readsdir: print "No reads directory provided"
-if not args.outputfile: print "No output file provided"
+if not args.fastafile: print("No contigs file provided")
+if not args.readsdir: print("No reads directory provided")
+if not args.outputfile: print("No output file provided")
 if not (args.fastafile or args.outputfile or args.readsdir): sys.exit(1)
 
 
@@ -74,10 +80,8 @@ threads = str(args.threads)
 if __name__ == "__main__":
 	
 	mapping(filename = contigsdir+"/"+contigsfile , directory = readsdir, cpus = threads)
-	
 	dicts=[]
 	names=[]
-
 	for i in os.listdir(readsdir):
 		if "contig_abundances.txt" in i:
 			f=open(readsdir+i,'r')
@@ -87,7 +91,6 @@ if __name__ == "__main__":
 			dicts.append(dict1)
 
 	keys = set().union(*(d.keys() for d in dicts))
-
 	with open("temp_combined.tsv", 'wb') as f:
 		w = csv.writer(f, delimiter='\t')
 		w.writerow(["ContigID"]+[n[:n.index("contig_abundances")-1]for n in names])

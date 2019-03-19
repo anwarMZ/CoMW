@@ -24,13 +24,15 @@ import os.path as path
 
  
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-i", "--inputfile", help= "Table file from BWA mapper output")
-parser.add_argument("-m", "--mapfile", help= "Map file from SWORD parsed output")
-parser.add_argument("-o", "--outputfile", help= "Output file in tsv file")
+requiredName = parser.add_argument_group('required arguments')
+requiredName.add_argument("-i", "--inputfile", help= "Table file from BWA mapper output")
+requiredName.add_argument("-m", "--mapfile", help= "Map file from SWORD parsed output")
+requiredName.add_argument("-o", "--outputfile", help= "Output file in tsv file")
+
 args = parser.parse_args()
-if not args.inputfile: print "No input file provided"
-if not args.outputfile: print "No output file provided"
-if not args.mapfile: print "No map file provided"
+if not args.inputfile: print("No input file provided")
+if not args.outputfile: print("No output file provided")
+if not args.mapfile: print("No map file provided")
 if not (args.inputfile or args.outputfile or args.mapfile): sys.exit(1)
 
 CoMWdir = os.path.realpath(__file__)

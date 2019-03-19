@@ -28,14 +28,16 @@ import shlex
 import os.path as path
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-i", "--inputfile", help= "SWORD output in bm9 format", required=True,)
-parser.add_argument("-o", "--outputfile", help= "Parsed Result file in .tsv format", required=True,)
 parser.add_argument("-e", "--Evalue", help= "Evalue for threshold eg: 5,6", type=int, default=5)
-parser.add_argument("-d", "--database", help= "1: Md5nr, 2: CAZy, 3: NCyc",  type=int, default = 1 )
+parser.add_argument("-d", "--database", help= "1: Md5nr, 2: CAZy, 3: NCyc",  type=int, default = 1)
+requiredName = parser.add_argument_group('required arguments')
+requiredName.add_argument("-i", "--inputfile", help= "SWORD output in bm9 format", required=True,)
+requiredName.add_argument("-o", "--outputfile", help= "Parsed Result file in .tsv format", required=True,)
+
 args = parser.parse_args()
-if not args.inputfile: print "No input file provided"
-if not args.outputfile: print "No output file provided"
-if not args.Evalue: print "No evalue file provided"
+if not args.inputfile: print("No input file provided")
+if not args.outputfile: print("No output file provided")
+if not args.Evalue: print("No evalue file provided")
 if not (args.inputfile or args.outputfile): sys.exit(1)
 db=int(args.database)
 if args.database not in [1,2,3]:sys.exit(1)

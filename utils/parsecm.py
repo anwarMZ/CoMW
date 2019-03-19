@@ -18,7 +18,7 @@ class Model:
         self.reads = []
     
     def printReadNumber(self,ampnoise_us_annotation=False):
-        print "%s\t%s" % (self.name,self.getTotalReads(ampnoise_us_annotation))
+        print("%s\t%s" % (self.name,self.getTotalReads(ampnoise_us_annotation)))
     
     def getTotalReads(self,ampnoise_us_annotation=False):
         total=0
