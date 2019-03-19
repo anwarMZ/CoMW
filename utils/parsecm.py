@@ -70,7 +70,7 @@ class CmsearchOut:
 				m.addRead(read)
                 
 	def parse(self,evalue):
-	"""Updated method dealing with 1.1+ output"""
+		"""Updated method dealing with 1.1+ output"""
         
 		inScoreTable = False
 		tRead = open(self.cmOut,"r")
