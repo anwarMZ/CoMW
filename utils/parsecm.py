@@ -136,7 +136,7 @@ if __name__=="__main__":
         else:
             mt.parse(float(sys.argv[2]))
         #print("\n----------------------\n")
-	ncRNA = open(inputdir+"/"+inputfile.replace(".out","ncRNA.txt"),"w")
+    ncRNA = open(inputdir+"/"+inputfile.replace(".out","ncRNA.txt"),"w")
         for Model in mt.models.values():
             Model.printReadNumber(ampnoise_us_annotation)
             fof = open(inputdir+"/TempFiles/"+inputfile.replace(".out","_")+Model.name+".fof","w")
@@ -144,7 +144,7 @@ if __name__=="__main__":
                 fof.write(read+"\n")
 		ncRNA.write(read + "\n")
 	    fof.close()
-	ncRNA.close()
+    ncRNA.close()
         #print("\n----------------------\n")
         #for rm in mt.readModel.keys():
         #    print("%s\t%s" % (rm, mt.readModel[rm]))
