@@ -120,10 +120,10 @@ class CmsearchOut:
     
 if __name__=="__main__":
     if len(sys.argv) < 3: 
-        print "Use parsecm.py cmsearch-output e-value-cutoff [options] \n \
+        print("Use parsecm.py cmsearch-output e-value-cutoff [options] \n \
                 Options:\n \
                 -underscore : Fasta file has underscore AmpliconNoise style annotation for abundance\n \
-                -old : support for older infernal (before v1.1)\n"
+                -old : support for older infernal (before v1.1)\n")
     else:
 	inputdir, inputfile = os.path.split(sys.argv[1])	
 	mt = CmsearchOut(inputdir+"/"+inputfile)
