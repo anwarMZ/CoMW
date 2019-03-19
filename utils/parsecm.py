@@ -133,11 +133,11 @@ if __name__=="__main__":
         #print("\n----------------------\n")
     
 	ncRNA = open(inputdir+"/"+inputfile.replace(".out","ncRNA.txt"),"w")
-		for Model in mt.models.values():
-			Model.printReadNumber(ampnoise_us_annotation)
-			fof = open(inputdir+"/TempFiles/"+inputfile.replace(".out","_")+Model.name+".fof","w")
-			for read in Model.reads:
-				fof.write(read+"\n")
+	for Model in mt.models.values():
+		Model.printReadNumber(ampnoise_us_annotation)
+		fof = open(inputdir+"/TempFiles/"+inputfile.replace(".out","_")+Model.name+".fof","w")
+		for read in Model.reads:
+			fof.write(read+"\n")
 		ncRNA.write(read + "\n")
 		fof.close()
 	ncRNA.close()
