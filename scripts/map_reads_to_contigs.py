@@ -91,7 +91,7 @@ if __name__ == "__main__":
 			dicts.append(dict1)
 
 	keys = set().union(*(d.keys() for d in dicts))
-	with open("temp_combined.tsv", 'wb') as f:
+	with open("temp_combined.tsv", 'w') as f:
 		w = csv.writer(f, delimiter='\t')
 		w.writerow(["ContigID"]+[n[:n.index("contig_abundances")-1]for n in names])
 		for key in keys:
