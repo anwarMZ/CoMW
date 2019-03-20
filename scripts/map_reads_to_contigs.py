@@ -66,7 +66,7 @@ def merge(filename, fileout):
 	for n in snames:
 		csv=csv.drop([n+"_R1"], axis=1)
 		csv=csv.drop([n+"_R2"], axis=1)
-	csv.to_csv(fileout, sep='\t', label=False,index_label=False, index=False)
+	csv.to_csv(fileout, sep='\t',index_label=False, index=False)
 
 CoMWdir = os.path.realpath(__file__)
 dbdir =  path.abspath(path.join(__file__ ,"../../databases"))
