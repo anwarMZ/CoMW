@@ -94,7 +94,7 @@ if __name__ == "__main__":
 	print("Running Infernal to detect ncRNAs\n")
 	print(outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"))
 	command=["cmsearch", "--cpu", str(cpus), "-o", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), dbdir+"/"+"Rfam.cm" , fastadir+"/"+fastaf]
-	#subprocess.call(command)
+	subprocess.call(command)
 	print(fastadir+"/"+fastaf)
 	print("Parsing Output\n")
 	command = ["python", utildir+"/parsecm.py", outputdir+"/"+fastaf.replace(".fasta","_cmsearch.out"), "1E-"+e]
