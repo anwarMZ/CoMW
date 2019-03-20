@@ -102,4 +102,4 @@ if __name__ == "__main__":
 		os.remove("temp_combined.tsv")
 	else:
 		csv=pandas.read_csv("temp_combined.tsv",sep="\t")
-		csv.to_csv(outputdir+"/"+outputfile, sep='\t', label=False,index_label=False, index=False)
+		csv.to_csv(outputdir+"/"+outputfile, sep='\t',index_label=False, index=False)
