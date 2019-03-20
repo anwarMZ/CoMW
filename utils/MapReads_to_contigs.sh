@@ -15,7 +15,7 @@ for read in $reads*.fastq; do
     stub=${read%.*}
     bwa mem -t $threads ${contigs} $read > ${stub}.sam
     samtools view -b -S ${stub}.sam > ${stub}.bam
-    samtools sort ${stub}.bam ${stub}_sorted 
+    samtools sort ${stub}.bam -o ${stub}_sorted 
     samtools index ${stub}_sorted.bam
     samtools idxstats ${stub}_sorted.bam > ${stub}_contig_abundances.txt 
 done
