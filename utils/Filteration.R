@@ -7,6 +7,7 @@ if (length(args)<4) {
 } 
 
 setwd(args[1])
+print(args[2])
 cag = read.table(args[2],sep="\t",header=T,row.names=1)
 
 svg('./TempFiles/MappedReadsperdataset.svg')
