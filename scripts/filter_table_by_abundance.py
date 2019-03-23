@@ -84,12 +84,12 @@ if __name__ == "__main__":
 
 	if not os.path.exists(inputdir+"/TempFiles"):
 		os.makedirs(inputdir+"/TempFiles")
-	print "Normalaizing and filtering abudnance table based on the relative expression\n"
+	print("Normalaizing and filtering abudnance table based on the relative expression\n")
 	normalize_tab(path = inputdir, tabfile = inputfile, exp = e, prefix = outprefix)
-	print "Abundance table normalized\n"
-	print "Filtering FASTA file provided\n"
+	print("Abundance table normalized\n")
+	print("Filtering FASTA file provided\n")
 	filter_fasta(fastadir+"/"+fastaf, prefix = outprefix)
-	print "FASTA file filtered"
+	print("FASTA file filtered")
 	agree= args.remove
 	if agree is 'y':
 		shutil.rmtree(inputdir+"/TempFiles/")
