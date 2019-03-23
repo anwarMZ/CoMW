@@ -74,9 +74,9 @@ def filter_fasta(fastafile, prefix):
 CoMWdir = os.path.realpath(__file__)
 dbdir =  path.abspath(path.join(__file__ ,"../../databases"))
 utildir = path.abspath(path.join(__file__ ,"../../utils"))
-fastadir, fastaf = os.abspath.split(args.fastafile)
+fastadir, fastaf = path.abspath.split(args.fastafile)
 outprefix= str(args.outputprefix)
-inputdir, inputfile = os.abspath.split(args.inputfile)
+inputdir, inputfile = path.abspath.split(args.inputfile)
 e=str(args.expression)
 
 
