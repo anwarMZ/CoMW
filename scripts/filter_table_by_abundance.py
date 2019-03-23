@@ -50,6 +50,8 @@ if args.remove not in ['y','n']:sys.exit(1)
 
 
 def normalize_tab(path,tabfile,exp,prefix):
+	command = ['Rscript', utildir+'/Filteration.R',path,tabfile,exp,prefix]
+	print(command)
 	subprocess.call(['Rscript', utildir+'/Filteration.R',path,tabfile,exp,prefix])	
 
 def filter_fasta(fastafile, prefix):
