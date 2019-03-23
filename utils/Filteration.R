@@ -7,7 +7,6 @@ if (length(args)<4) {
 } 
 
 setwd(args[1])
-print(args[2])
 cag = read.table(args[2],sep="\t",header=T,row.names=1)
 
 svg('./TempFiles/MappedReadsperdataset.svg')
@@ -30,6 +29,7 @@ dev.off()
 
 exp=as.double(args[3])
 included_contigs = row.names(cagr)[(rowMeans(cagr)>=exp/minReads)]
+print(paste(args[1],"/TempFiles/",args[4],"_IncludedContigs.txt",sep=""))
 write.table(included_contigs,sep="\t",file=paste(args[1],"/TempFiles/",args[4],"_IncludedContigs.txt",sep=""),quote = FALSE)
 cagKeep = cag[(rowMeans(cagr)>=exp/minReads),]
 write.table(cagKeep,sep="\t",file=paste(args[4],"_AbundanceFiltered.tsv",sep=""),quote = FALSE)
