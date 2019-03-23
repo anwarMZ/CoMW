@@ -34,4 +34,4 @@ write.table(included_contigs,sep="\t",file=paste("TempFiles/",args[4],"_Included
 cagKeep = cag[(rowMeans(cagr)>=exp/minReads),]
 write.table(cagKeep,sep="\t",file=paste(args[4],"_AbundanceFiltered.tsv",sep=""),quote = FALSE)
 cagrKeep = cagr[(rowMeans(cagr)>=exp/minReads),]
-write.table(cagrKeep,sep="\t",file=paste(args[1],"/TempFiles/",args[4],"_RelativeAbundances.tsv",sep=""),quote = FALSE)
+write.table(cagrKeep,sep="\t",file=paste("TempFiles/",args[4],"_RelativeAbundances.tsv",sep=""),quote = FALSE)
