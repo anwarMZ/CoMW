@@ -108,7 +108,6 @@ if __name__ == "__main__":
 	for i in x:
 		if ".fasta" in i:
 			files.append(i)
-	print files
 	files.remove(transout)
 	files.remove(transout+".gdx")
 	files.remove(transout+".flat")
