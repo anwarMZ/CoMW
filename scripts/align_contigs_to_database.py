@@ -67,22 +67,19 @@ if args.remove not in ['y','n']:sys.exit(1)
 
 
 def translation(filename, orfs):
-	transeqcommand = "transeq -sformat pearson -clean -frame " + str(orfs) + " -sequence "+ str(filename) + " -outseq " + outputdir+"/TempFiles/"+transout
-	transeqargs = shlex.split(transeqcommand)
-	subprocess.call(transeqargs)
+	transeqcommand = ["transeq","-sformat","pearson", "-clean", "-frame", str(orfs), "-sequence", str(filename), "-outseq", str(outputdir+"/TempFiles/"+transout)]
+	subprocess.call(transeqcommand)
 
 
 def split(filename, size):
-	splitcommand = "pyfasta split -n " + str(size) + " " + outputdir+"/TempFiles/"+transout
-	splitargs = shlex.split(splitcommand)
-	subprocess.call(splitargs)
+	splitcommand = ["pyfasta", "split", "-n", str(size), str(outputdir+"/TempFiles/"+transout)]
+	subprocess.call(splitcommand)
 	
 
 def batchsword(fastalist, Subjectdatabase, threads):	
 	for i in fastalist:
-		command="sword -i "+ outputdir+"/TempFiles/"+ i +" -t " + str(threads) + " -o "+ outputdir+"/TempFiles/"+i[:i.index(".fasta")]+".result.tsv -f bm9 -j " + Subjectdatabase + " -c 30000 -v 1.0"
-		swordargs = shlex.split(command)
-		subprocess.call(swordargs)
+		command = ["sword/sword", "-i", str(outputdir+"/TempFiles/"+i), "-t", str(threads), "-o", str(outputdir+"/TempFiles/"+i[:i.index(".fasta")]+".result.tsv"), "-f", "bm9",  "-j", str(Subjectdatabase), "-c", str(30000)"
+		subprocess.call(command)
 
 CoMWdir = os.path.realpath(__file__)
 dbdir =  path.abspath(path.join(__file__ ,"../../databases"))
@@ -97,14 +94,14 @@ if __name__ == "__main__":
 		os.makedirs(outputdir+"/TempFiles")
 	n = args.ORFs
 	transout="Translated_"+inputfile
-	print "\n\nTranslating the query sequence to proteins in " +str(args.ORFs) + " ORF(s)" 
+	print("\n\nTranslating the query sequence to proteins in " +str(args.ORFs) + " ORF(s)")
 	translation(filename = inputdir+"/"+inputfile, orfs = n)
-	print "\n\nTranslation done"	
+	print("\n\nTranslation done")
 
 	n=args.splitsize
-	print "\n\nSplitting translated fasta file into "+str(n)+ " to use less memory"
+	print("\n\nSplitting translated fasta file into "+str(n)+ " to use less memory")
 	split(filename = outputdir+"/"+transout, size=n)
-	print "\n\nSplitting done"
+	print("\n\nSplitting done")
 
 	files=[]
 	x=os.listdir(outputdir+"/TempFiles/")
@@ -127,7 +124,7 @@ if __name__ == "__main__":
 		database=dbdir+"/NCyc_100.faa"
 		batchsword(fastalist = files, Subjectdatabase =  database, threads = t)
 	else:
-		print "Wrong input for database: Only options 1,2 & 3, see help with -h"
+		print("Wrong input for database: Only options 1,2 & 3, see help with -h")
 
 	for f in files:
 		os.system("cat "+outputdir+"/TempFiles/"+f.replace(".fasta",".result.tsv")+" >> " + outputdir+"/"+outputfile)
