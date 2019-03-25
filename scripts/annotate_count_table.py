@@ -333,4 +333,4 @@ if __name__ == "__main__":
 	elif db is 3:
 		annotate_NCyc(tabfile = inputdir+"/"+inputfile, outfile = outputdir+"/"+outputfile)
 	else:
-		print "Wrong input for database: Only options 1,2 & 3, see help with -h"
+		print("Wrong input for database: Only options 1,2 & 3, see help with -h")
