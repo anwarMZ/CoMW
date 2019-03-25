@@ -46,7 +46,7 @@ if args.database not in [1,2,3]:sys.exit(1)
 
 
 def Md5nr_map(filename):
-	f=open(outputdir+"/"+outputfile,"r")
+	f=open(filename,"r")
 	lines=f.readlines()
 	f.close()
 
@@ -80,6 +80,7 @@ def Md5nr_map(filename):
 			s = key.strip() + "\t"  + id_desc.split("\t")[0].strip()
 			f.write(s+"\n")
 	f.close()	
+
 
 def CAZy_map(filename):
 	f=open(filename,"r")
