@@ -165,4 +165,4 @@ if __name__ == "__main__":
 	elif db is 3:
 		NCyc_map(filename = outputdir+"/"+outputfile)
 	else:
-		print "Wrong input for database: Only options 1,2 & 3, see help with -h"
+		print("Wrong input for database: Only options 1,2 & 3, see help with -h")
