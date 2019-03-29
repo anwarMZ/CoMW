@@ -1,4 +1,4 @@
-## CoMW
+# CoMW
 
 Comparative Metatranscriptomics Workflow is a standardized and validated workflow to functionally classify quality filtered mRNA reads from metatranscriptomic or total RNA studies generated using NGS short reads. CoMW is used for classification of these reads using assembled contigs to the reference databases provided and cited. 
 
@@ -9,7 +9,7 @@ Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to res
 
 For queries or issues please contact : mzanwar@envs.au.dk
 
-# Installation
+## Installation
 
 1. Download the latest distribution and expand it using unzip
 
@@ -18,18 +18,18 @@ For queries or issues please contact : mzanwar@envs.au.dk
 2. Download the development version:
    > git clone https://github.com/Zohaib509/CoMW.git
 
-# Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
-> cd CoMW
->  conda env create -f ./configuration.yml
-> source activate CoMW
+### Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
+> cd CoMW <br />
+> conda env create -f ./configuration.yml <br />
+> source activate CoMW<br />
 
-# Run install.sh file to download and make sword and databases to be used in CoMW
+### Run install.sh file to download and make sword and databases to be used in CoMW
 > bash ./test.sh
 
-# Now run python scripts e.g.
+### Now run python scripts e.g.
 > python scripts/assemble_reads.py -h 
 
-# Scripts
+## Scripts
 
 These scripts are written in Python and detailed parameters and dependdencies are along with usage examples are given in CoMW user manual CoMW_Manual.pdf
 
@@ -50,13 +50,13 @@ These scripts are written in Python and detailed parameters and dependdencies ar
 8. annotate_count_table.py
 
 
-# Utils
+## Utils
 
 Utils are small snippets written in R or bash to assist main scripts.
 They must be present in utils folder in order to be accessible
 
 
-# Databases 
+## Databases 
 
 Databases include fasta files and annotations that are also available in their respective developer's websites but are also collected here under same licence
 Depending upon your usage, please cite the efforts of these databases that were developed by these groups.
@@ -73,6 +73,6 @@ Lombard, V., Golaconda Ramulu, H., Drula, E., Coutinho, P.M. and Henrissat, B., 
 Tu, Q., Lin, L., Cheng, L., Deng, Y., He, Z. and Wren, J., 2018. NCycDB: a curated integrative database for fast and accurate metagenomic profiling of nitrogen cycling genes. Bioinformatics, 1, p.9.
 
 
-# Acknowledgment
+## Acknowledgment
 
 This work was supported by a grant from the European Commission’s Marie Sklowdowska Curie Actions program MicroArctic-ITN under project number 675546.
