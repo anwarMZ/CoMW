@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 printf "\n\nCloning and making Sword\n\n"
@@ -16,4 +15,3 @@ do
 	rm -rf $i
 done
 printf "\n\nCoMW installed, ready to use."
-

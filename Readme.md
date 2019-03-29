@@ -18,14 +18,16 @@ For queries or issues please contact : mzanwar@envs.au.dk
 2. Download the development version:
    > git clone https://github.com/Zohaib509/CoMW.git
 
-# Download Databases and Annotations
-All databases and annotations can be downloaded from a single link here 
-http://tiny.cc/CoMW_DBS
+# Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
+> cd CoMW
+>  conda env create -f ./configuration.yml
+> source activate CoMW
 
-> unzip CoMW_DB
+# Run install.sh file to download and make sword and databases to be used in CoMW
+> bash ./test.sh
 
-> bzip2 -d ./CoMW_DB/*
-
+# Now run python scripts e.g.
+> python scripts/assemble_reads.py -h 
 
 # Scripts
 
@@ -46,7 +48,6 @@ These scripts are written in Python and detailed parameters and dependdencies ar
 7. map_orthologs_to_count_table.py
 
 8. annotate_count_table.py
-
 
 
 # Utils
