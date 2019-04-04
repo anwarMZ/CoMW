@@ -283,3 +283,4 @@ dependencies:
   - infernal=1.1.1
   - emboss=6.6.0
   - bwa=0.7.17
+  - sword=1.0
