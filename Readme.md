@@ -20,7 +20,7 @@ For queries or issues please contact : mzanwar@envs.au.dk
 
 ### Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
 > cd CoMW <br />
-> conda env create -f ./configuration.yml <br />
+> conda env create -f ./CoMW.yml <br />
 > source activate CoMW<br />
 
 ### Run install.sh file to download and make sword and databases to be used in CoMW
