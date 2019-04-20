@@ -16,7 +16,7 @@ For queries or issues please contact : mzanwar@envs.au.dk
 	OR 
 
 2. Download the development version:
-   > git clone https://github.com/Zohaib509/CoMW.git
+   > git clone https://github.com/anwarMZ/CoMW.git
 
 ### Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
 > cd CoMW <br />
