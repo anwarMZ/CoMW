@@ -9,8 +9,8 @@ dependencies:
   - r-sartools=1.6.6
   - samtools=1.9
   - sortmerna=2.0
-  - trimmomatic=0.38=1
-  - trinity=2.6.6=2
+  - trimmomatic=0.38
+  - trinity=2.6.6
   - python=3.5.5
   - pyfasta=0.5.2
   - biopython=1.66
