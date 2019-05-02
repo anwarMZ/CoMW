@@ -27,7 +27,6 @@ dependencies:
   - cryptography=2.6.1
   - futures=3.2.0
   - idna
-  - ipaddress=1.0.22
   - libedit=3.1.20181209
   - openssl
   - pycosat=0.6.3
