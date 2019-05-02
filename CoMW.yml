@@ -30,7 +30,7 @@ dependencies:
   - openssl
   - pycosat=0.6.3
   - pycparser=2.19  
-  - pyopenssl=19.0.0 
+  - pyopenssl 
   - pysocks=1.6.8
   - requests=2.21.0
   - ruamel_yaml=0.15.46
