@@ -78,7 +78,7 @@ def split(filename, size):
 
 def batchsword(fastalist, Subjectdatabase, threads):	
 	for i in fastalist:
-		command = ["sword", "-i", str(outputdir+"/TempFiles/"+i), "-t", str(threads), "-o", str(outputdir+"/TempFiles/"+i[:i.index(".fasta")]+".result.tsv"), "-f", "bm9",  "-j", str(Subjectdatabase), "-c", str(30000)]
+		command = ["./sword/sword", "-i", str(outputdir+"/TempFiles/"+i), "-t", str(threads), "-o", str(outputdir+"/TempFiles/"+i[:i.index(".fasta")]+".result.tsv"), "-f", "bm9",  "-j", str(Subjectdatabase), "-c", str(30000)]
 		subprocess.call(command)
 
 CoMWdir = os.path.realpath(__file__)
