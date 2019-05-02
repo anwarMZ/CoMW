@@ -24,7 +24,7 @@ dependencies:
   - asn1crypto=0.24.0
   - chardet=3.0.4
   - cryptography
-  - futures=3.2.0
+  - futures
   - idna
   - libedit=3.1.20181209
   - openssl
