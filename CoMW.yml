@@ -29,7 +29,7 @@ dependencies:
   - idna
   - ipaddress=1.0.22
   - libedit=3.1.20181209
-  - openssl=1.1.1b
+  - openssl
   - pycosat=0.6.3
   - pycparser=2.19  
   - pyopenssl=19.0.0 
