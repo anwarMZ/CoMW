@@ -12,7 +12,6 @@ dependencies:
   - sortmerna=2.0=he941832_3
   - trimmomatic=0.38=1
   - trinity=2.6.6=2
-  - biom-format=2.1.7=py35h7eb728f_0
   - python=3.5.5=h5001a0f_2
   - pyfasta=0.5.2
   - biopython=1.66
