@@ -32,7 +32,7 @@ dependencies:
   - pycparser=2.19  
   - pyopenssl 
   - pysocks=1.6.8
-  - requests=2.21.0
-  - ruamel_yaml=0.15.46
+  - requests
+  - ruamel_yaml
   - urllib3
   - yaml=0.1.7
