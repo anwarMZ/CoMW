@@ -6,12 +6,12 @@ channels:
   - defaults
   - maggie-m
 dependencies:
-  - r-sartools=1.6.6=r341_1
-  - samtools=1.9=h8ee4bcc_1
-  - sortmerna=2.0=he941832_3
+  - r-sartools=1.6.6
+  - samtools=1.9
+  - sortmerna=2.0
   - trimmomatic=0.38=1
   - trinity=2.6.6=2
-  - python=3.5.5=h5001a0f_2
+  - python=3.5.5
   - pyfasta=0.5.2
   - biopython=1.66
   - pandas=0.19.2
