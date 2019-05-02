@@ -34,5 +34,5 @@ dependencies:
   - pysocks=1.6.8
   - requests=2.21.0
   - ruamel_yaml=0.15.46
-  - urllib3=1.24.1
+  - urllib3
   - yaml=0.1.7
