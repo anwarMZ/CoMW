@@ -6,7 +6,6 @@ channels:
   - defaults
   - maggie-m
 dependencies:
-  - cutadapt=1.18=py35_0
   - r-sartools=1.6.6=r341_1
   - samtools=1.9=h8ee4bcc_1
   - sortmerna=2.0=he941832_3
