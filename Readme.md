@@ -9,6 +9,33 @@ Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to res
 
 For queries or issues please contact : mzanwar@envs.au.dk
 
+## Structure
+
+.
+|-- CoMW_Manual.pdf
+|-- CoMW.yml
+|-- databases
+|-- install.sh
+|-- Readme.md
+|-- scripts
+|   |-- align_contigs_to_database.py
+|   |-- annotate_count_table.py
+|   |-- assemble_reads.py
+|   |-- filter_ncRNA.py
+|   |-- filter_table_by_abundance.py
+|   |-- map_orthologs_to_count_table.py
+|   |-- map_reads_to_contigs.py
+|   |-- parse_sword.py
+|   `-- sort_rna.py
+`-- utils
+    |-- AggregateTables.R
+    |-- Filteration.R
+    |-- MapReads_to_contigs.sh
+    |-- parsecm.py
+    `-- ParsingSword.R
+
+3 directories, 18 files
+
 ## Installation
 
 1. Download the latest distribution and expand it using unzip
