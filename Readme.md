@@ -49,11 +49,11 @@ git clone https://github.com/anwarMZ/CoMW.git
 Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
 
 ```bash
-cd CoMW <br />
-conda env create -f ./CoMW.yml <br />
-source activate CoMW<br />
+cd CoMW
+conda env create -f ./CoMW.yml
+source activate CoMW
 ```
-Run install.sh file to download and make sword and databases to be used in CoMW
+Run install.sh file to download databases to be used in CoMW in databases directory
 ```bash
 bash ./test.sh
 ```
@@ -68,20 +68,15 @@ python scripts/assemble_reads.py -h
 
 These scripts are written in Python and detailed parameters and dependdencies are along with usage examples are given in CoMW user manual CoMW_Manual.pdf
 
+```bash
+
 1. assemble_reads.py
-
 2. filter_ncRNAs.py
-
 3. map_reads_to_contigs.py
-
-4. filter_table_by_abundance.py [Optional]
-
+4. filter_table_by_abundance.py
 5. align_contigs_to_database.py
-
 6. parse_sword.py
-
 7. map_orthologs_to_count_table.py
-
 8. annotate_count_table.py
 
 
