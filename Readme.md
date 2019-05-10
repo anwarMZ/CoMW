@@ -79,6 +79,7 @@ These scripts are written in Python and detailed parameters and dependdencies ar
 7. map_orthologs_to_count_table.py
 8. annotate_count_table.py
 
+```
 
 ## Utils
 
