@@ -9,7 +9,9 @@ Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to res
 
 For queries or issues please contact : mzanwar@envs.au.dk
 
-## Structure and Installation
+## Structure, Requirement and Installation
+
+1. SSE4.1 or higher
 
 ```bash
 
@@ -55,7 +57,7 @@ source activate CoMW
 ```
 Run install.sh file to download databases to be used in CoMW in databases directory
 ```bash
-bash ./test.sh
+bash ./install.sh
 ```
 
 Now run python scripts e.g.
