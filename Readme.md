@@ -9,7 +9,7 @@ Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to res
 
 For queries or issues please contact : mzanwar@envs.au.dk
 
-## Structure, Requirement and Installation
+## System Requirement, Structure and Installation
 
 1. SSE4.1 or higher
 
