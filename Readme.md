@@ -9,46 +9,79 @@ Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to res
 
 For queries or issues please contact : mzanwar@envs.au.dk
 
-## Installation
+## System Requirement, Structure and Installation
+
+1. SSE4.1 or higher
+
+```bash
+
+.
+|-- CoMW_Manual.pdf
+|-- CoMW.yml
+|-- databases
+|-- install.sh
+|-- Readme.md
+|-- scripts
+|   |-- align_contigs_to_database.py
+|   |-- annotate_count_table.py
+|   |-- assemble_reads.py
+|   |-- filter_ncRNA.py
+|   |-- filter_table_by_abundance.py
+|   |-- map_orthologs_to_count_table.py
+|   |-- map_reads_to_contigs.py
+|   `-- parse_sword.py
+`-- utils
+    |-- AggregateTables.R
+    |-- Filteration.R
+    |-- MapReads_to_contigs.sh
+    |-- parsecm.py
+    `-- ParsingSword.R
+```
 
 1. Download the latest distribution and expand it using unzip
 
 	OR 
 
 2. Download the development version:
-   > git clone https://github.com/anwarMZ/CoMW.git
 
-### Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
-> cd CoMW <br />
-> conda env create -f ./CoMW.yml <br />
-> source activate CoMW<br />
+```bash
+git clone https://github.com/anwarMZ/CoMW.git
+```
 
-### Run install.sh file to download and make sword and databases to be used in CoMW
-> bash ./test.sh
+Create an environment using anaconda, If you do not have anaconda installed, use [Anaconda installer link](https://docs.anaconda.com/anaconda/install/linux/)
 
-### Now run python scripts e.g.
-> python scripts/assemble_reads.py -h 
+```bash
+cd CoMW
+conda env create -f ./CoMW.yml
+source activate CoMW
+```
+Run install.sh file to download databases to be used in CoMW in databases directory
+```bash
+bash ./install.sh
+```
+
+Now run python scripts e.g.
+```bash
+python scripts/assemble_reads.py -h 
+```
+
 
 ## Scripts
 
 These scripts are written in Python and detailed parameters and dependdencies are along with usage examples are given in CoMW user manual CoMW_Manual.pdf
 
+```bash
+
 1. assemble_reads.py
-
 2. filter_ncRNAs.py
-
 3. map_reads_to_contigs.py
-
-4. filter_table_by_abundance.py [Optional]
-
+4. filter_table_by_abundance.py
 5. align_contigs_to_database.py
-
 6. parse_sword.py
-
 7. map_orthologs_to_count_table.py
-
 8. annotate_count_table.py
 
+```
 
 ## Utils
 
@@ -58,8 +91,7 @@ They must be present in utils folder in order to be accessible
 
 ## Databases 
 
-Databases include fasta files and annotations that are also available in their respective developer's websites but are also collected here under same licence
-Depending upon your usage, please cite the efforts of these databases that were developed by these groups.
+Databases include fasta files and annotations that are also available in their respective developer websites but are also collected here under same licence Depending upon your usage, please cite the efforts of these databases that were developed by these groups.
 
 1. The M5nr: a novel non-redundant database containing protein sequences and annotations from multiple sources and associated tools
 Wilke, A., Harrison, T., Wilkening, J., Field, D., Glass, E.M., Kyrpides, N., Mavrommatis, K. and Meyer, F., 2012. The M5nr: a novel non-redundant database containing protein sequences and annotations from multiple sources and associated tools. BMC bioinformatics, 13(1), p.141.
@@ -75,4 +107,4 @@ Tu, Q., Lin, L., Cheng, L., Deng, Y., He, Z. and Wren, J., 2018. NCycDB: a curat
 
 ## Acknowledgment
 
-This work was supported by a grant from the European Commission’s Marie Sklowdowska Curie Actions program MicroArctic-ITN under project number 675546.
+This work was supported by a grant from the European Commissions Marie Sklowdowska Curie Actions program MicroArctic-ITN under project number 675546.
