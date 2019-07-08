@@ -36,3 +36,4 @@ dependencies:
   - ruamel_yaml
   - urllib3
   - yaml=0.1.7
+  - cmake=3.3.1
