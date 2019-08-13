@@ -4,7 +4,7 @@ Comparative Metatranscriptomics Workflow is a standardized and validated workflo
 
 If you use CoMW in your research, please cite:
 
-Anwar MZ, Lanzen A, Bang-Andreasen T, and Jacobsen CS. To assemble or not to resemble – A validated Comparative Metatranscriptomics Workflow (CoMW), _GigaScience_,[Accepted, In Press]
+Muhammad Zohaib Anwar, Anders Lanzen, Toke Bang-Andreasen, Carsten Suhr Jacobsen, To assemble or not to resemble—A validated Comparative Metatranscriptomics Workflow (CoMW), GigaScience, Volume 8, Issue 8, August 2019, giz096, https://doi.org/10.1093/gigascience/giz096
 
 
 For queries or issues please contact : mzanwar@envs.au.dk
