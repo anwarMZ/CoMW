@@ -1,18 +1,15 @@
 name: CoMW
 channels:
-  - biocore
   - bioconda
   - conda-forge
   - defaults
-  - maggie-m
-  - anaconda
 dependencies:
   - r-sartools=1.6.6
   - samtools=1.9
   - sortmerna=2.0
   - trimmomatic=0.38
   - trinity=2.6.6
-  - python=3.5.5
+  - python=3.6.7
   - pyfasta=0.5.2
   - biopython=1.66
   - pandas=0.19.2
@@ -21,20 +18,14 @@ dependencies:
   - infernal=1.1.1
   - emboss=6.6.0
   - bwa=0.7.17
-  - sword=1.0.1
+  - sword=1.0.3
   - asn1crypto=0.24.0
   - chardet=3.0.4
-  - cryptography
-  - futures
-  - idna
+  - cryptography=2.8
+  - idna=2.8
   - libedit=3.1.20181209
-  - openssl
-  - pycosat=0.6.3
-  - pycparser=2.19  
-  - pyopenssl 
+  - openssl=1.1.1d
+  - pycosat
+  - pycparser=2.19
   - pysocks=1.6.8
-  - requests
-  - ruamel_yaml
-  - urllib3
-  - yaml=0.1.7
-  - cmake=3.3.1-0
+  - ruamel_yaml=0.15.71
