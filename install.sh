@@ -9,14 +9,4 @@ do
 	rm -rf $i
 done
 
-
-printf "\n\nDownloading and installing sword for CoMW\n\n"
-git clone --recursive https://github.com/rvaser/sword.git sword
-cd sword/
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-make
-cd ../../
-
 printf "\n\nCoMW installed, ready to use."
