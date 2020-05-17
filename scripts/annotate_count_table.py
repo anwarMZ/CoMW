@@ -14,13 +14,13 @@ Dependencies:
 1. Databases and annotations in $CoMW/databases
 
 Example:
-python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 1 
+python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 1
 Given an input count table $Counttable.tsv is annotated using eggNOG hierarchial annotation
 
-python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 2 
+python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 2
 Given an input count table $Counttable.tsv is annotated using CAZy hierarchial annotation
 
-python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 3 
+python annotate_count_table.py -i $Counttable.tsv -o $Counttable_annotated.tsv -d 3
 Given an input count table $Counttable.tsv is annotated using NCyc hierarchial annotation
 
 """
@@ -91,7 +91,7 @@ def annotate_eggNOG(tabfile, outfile):
 	levelI["S"]="POORLY CHARACTERIZED"
 
 	levelI["X"]="MOBILOME"
-	
+
 	f=open(dbdir+"/fun2003-2014.tab",'r')
 	lines=f.readlines()[1:]
 	f.close()
@@ -100,12 +100,12 @@ def annotate_eggNOG(tabfile, outfile):
 	for items in lines:
 		items=items.strip()
 		levelII[items.split("\t")[0]]=items.split("\t")[1]
-	
+
 
 	f=open(dbdir+"/eggNOG.md52id2ont",'r')
 	lines=f.readlines()
 	f.close()
-	
+
 	levelIII={}
 	for items in lines:
 		items=items.strip()
@@ -113,7 +113,7 @@ def annotate_eggNOG(tabfile, outfile):
 
 
 	infile[0]=infile[0].strip()
-	infile[0]="#"+infile[0]+"\ttaxonomy"
+	infile[0]="#"+infile[0]+"\tFunctions"
 
 	for i in range(1,len(infile)):
 		infile[i]=infile[i].strip()
@@ -134,7 +134,7 @@ def annotate_eggNOG(tabfile, outfile):
 		for k in set(first):
 			First_level=First_level+k+".."
 		First_level=First_level[:len(First_level)-2]
-	
+
 		for j in cat:
 			Second_level=Second_level+str(levelII[j])+".."
 		Second_level=Second_level[:len(Second_level)-2]
@@ -143,40 +143,40 @@ def annotate_eggNOG(tabfile, outfile):
 		for k in set(Second):
 			Second_level=Second_level+k+".."
 		Second_level=Second_level[:len(Second_level)-2]
-	
+
 		if infile[i].split("\t")[0] in levelIII:
 			Third_level=levelIII[infile[i].split("\t")[0]]
 		else:
 			Third_level="Function unknown"
-		infile[i]=infile[i]+ "\tk__COG; p__"+str(First_level)+"; c__"+str(Second_level)+"; o__"+str(Third_level)+"; f__; g__; s__"
+		infile[i]=infile[i]+ "\tDB__COG; LevelI__"+str(First_level)+"; LevelII__"+str(Second_level)+"; LevelIII__"+str(Third_level)+"; LevelIV__; LevelV__; LevelVI__"
 
 	out=open(outfile,'w')
 	out.write(infile[0]+"\n")
 	for i in range(1,len(infile)):
 		if ".." in infile[i]:
-			if ".." in infile[i][infile[i].index("c__") : infile[i].index("; o__")] and ".." not in infile[i][infile[i].index("p__") : infile[i].index("; c__")]:
-				taxonomy = infile[i][infile[i].index("c__")+3 : infile[i].index("; o__")]
+			if ".." in infile[i][infile[i].index("LevelII__") : infile[i].index("; LevelIII__")] and ".." not in infile[i][infile[i].index("LevelI__") : infile[i].index("; LevelII__")]:
+				taxonomy = infile[i][infile[i].index("LevelII__")+3 : infile[i].index("; LevelIII__")]
 				inheritence=taxonomy.split("..")
 				for j in range(0,len(inheritence)):
 					ID=infile[i][:infile[i].index("\t")]+"_"+str(j+1)
-					x=infile[i][infile[i].index("\t"):infile[i].index("c__")]+"c__"+inheritence[j]+infile[i][infile[i].index("; o__"):]
+					x=infile[i][infile[i].index("\t"):infile[i].index("LevelII__")]+"LevelII__"+inheritence[j]+infile[i][infile[i].index("; LevelIII__"):]
 					out.write(ID+x+"\n")
-			if ".." in infile[i][infile[i].index("c__") : infile[i].index("; o__")] and ".." in infile[i][infile[i].index("p__") : infile[i].index("; c__")]:
-				taxonomyII = infile[i][infile[i].index("c__") +3 : infile[i].index("; o__")]
+			if ".." in infile[i][infile[i].index("LevelII__") : infile[i].index("; LevelIII__")] and ".." in infile[i][infile[i].index("LevelI__") : infile[i].index("; LevelII__")]:
+				taxonomyII = infile[i][infile[i].index("LevelII__") +3 : infile[i].index("; LevelIII__")]
 				inheritenceII=taxonomyII.split("..")
 				for l in range(0,len(inheritenceII)):
 					list_values = [key for key,val in levelII.items() if val==inheritenceII[l]]
 					ID=infile[i][:infile[i].index("\t")]+"_"+str(l+1)
-					x=infile[i][infile[i].index("\t"):infile[i].index("p__")]+"p__"+levelI[list_values[0]]+infile[i][infile[i].index("; c__"):]
-					x=x.replace(x[x.index("c__"):x.index("o__")],"c__"+inheritenceII[l]+"; ")
+					x=infile[i][infile[i].index("\t"):infile[i].index("LevelI__")]+"LevelI__"+levelI[list_values[0]]+infile[i][infile[i].index("; LevelII__"):]
+					x=x.replace(x[x.index("LevelII__"):x.index("LevelIII__")],"LevelII__"+inheritenceII[l]+"; ")
 					out.write(ID+x+"\n")
-		else:	
+		else:
 			out.write(infile[i]+"\n")
 	out.close()
 
 
 def annotate_CAZy(tabfile,outfile):
-	
+
 	f=open(dbdir+"/CAZY_hierarchy.txt",'r')
 	lines1=f.readlines()
 	f.close()
@@ -196,11 +196,11 @@ def annotate_CAZy(tabfile,outfile):
 			key=tokens[0]
 			CAZy_id.append(key)
 			CAZy_org.append(value)
-	
+
 	f=open(tabfile,'r')
 	lines=f.readlines()
 	f.close()
-	
+
 	Level2=""
 	Level3=""
 	for i in range(1,len(lines)):
@@ -219,30 +219,30 @@ def annotate_CAZy(tabfile,outfile):
 		if "CBM" in tokens[0].split("|")[1]:
 			EnzymeClass="Carbohydrate-Binding Modules"
 		Level2=tokens[0].split("|")[1]
-		lines[i]=lines[i]+"\tk__CAZy; p__"+EnzymeClass+"; c__"+Level2+"; o__; f__; g__; s__\n"
+		lines[i]=lines[i]+"\tDB__CAZy; LevelI__"+EnzymeClass+"; LevelII__"+Level2+"; LevelIII__; LevelIV__; LevelV__; LevelVI__\n"
 		if len(tokens[0].split("|")) > 2:
 			Level3=tokens[0].split("|")[2]
-			lines[i]=lines[i].replace("o__;","o__"+Level3+";")
+			lines[i]=lines[i].replace("LevelIII__;","LevelIII__"+Level3+";")
 
 	f=open(outfile,'w')
-	f.write(lines[0].strip()+"\ttaxonomy\n")
+	f.write(lines[0].strip()+"\tFunctions\n")
 	for i in range(1,len(lines)):
 		f.write(lines[i])
 	f.close()
-	
+
 
 def annotate_NCyc(tabfile, outfile):
 
 	f=open(tabfile,"r")
 	infile=f.readlines()
 	f.close()
-	
 
-	f=open(dbdir+"/NCyc_Cat.txt",'r') 
+
+	f=open(dbdir+"/NCyc_Cat.txt",'r')
 	lines=f.readlines()
 	f.close()
 
-	
+
 	f=open(dbdir+"/id2gene.map.txt",'r')
 	lines1=f.readlines()
 	f.close()
@@ -252,12 +252,12 @@ def annotate_NCyc(tabfile, outfile):
 	for items in lines:
 		items=items.strip()
 		fun_cat[items.split("\t")[0]]=items.split("\t")[1]
-	
+
 	fun_desc={}
 	for items in lines:
 		items=items.strip()
 		fun_desc[items.split("\t")[0]]=items.split("\t")[2]
-	
+
 	fun_ID={}
 	for items in lines1:
 		items=items.strip()
@@ -265,8 +265,8 @@ def annotate_NCyc(tabfile, outfile):
 
 	f=open(dbdir+"/NCyc_100.faa",'r')
 	dbfile=f.readlines()
-	f.close()	
-	
+	f.close()
+
 	source = {}
 	for dbheader in dbfile:
 		dbheader=dbheader.strip()
@@ -276,9 +276,9 @@ def annotate_NCyc(tabfile, outfile):
 				desc = dbheader[dbheader.index("description")+12:]
 				item=desc.split(" ")[0]
 				source[key]=item
-	
+
 	infile[0]=infile[0].strip()
-	infile[0]="#"+infile[0]+"\ttaxonomy"
+	infile[0]="#"+infile[0]+"\tFunctions"
 	out=open(outfile,'w')
 	out.write(infile[0].strip()+"\n")
 
@@ -291,11 +291,11 @@ def annotate_NCyc(tabfile, outfile):
 		Second_level=""
 		if infile[i].split("\t")[0] in fun_ID:
 			Second_level = fun_ID[infile[i].split("\t")[0]]
-		else:		
+		else:
 			Second_level = source[infile[i].split("\t")[0]]
 
 
-		
+
 		if Second_level in fun_cat:
 			First_level_1=fun_cat[Second_level]
 			if "," in First_level_1:
@@ -304,15 +304,15 @@ def annotate_NCyc(tabfile, outfile):
 
 		else:
 			First_level_1="Unknown"
-		
-		
+
+
 		if not "NULL" in First_level_2:
-			infile[i]=infile[i]+ "\tk__NCyc; p__"+str(First_level_1)+"; c__"+str(Second_level)+"; o__; f__; g__; s__"
+			infile[i]=infile[i]+ "\tDB__NCyc; LevelI__"+str(First_level_1)+"; LevelII__"+str(Second_level)+"; LevelIII__; LevelIV__; LevelV__; LevelVI__"
 			out.write(infile[i].strip()+"\n")
-			infile[i]="1_"+infile[i].split("k__")[0]+ "k__NCyc; p__"+str(First_level_2)+"; c__"+str(Second_level)+"; o__; f__; g__; s__"
+			infile[i]="1_"+infile[i].split("DB__")[0]+ "DB__NCyc; LevelI__"+str(First_level_2)+"; LevelII__"+str(Second_level)+"; LevelIII__; LevelIV__; LevelV__; LevelVI__"
 			out.write(infile[i].strip()+"\n")
 		else:
-			infile[i]=infile[i]+ "\tk__NCyc; p__"+str(First_level_1)+"; c__"+str(Second_level)+"; o__; f__; g__; s__"
+			infile[i]=infile[i]+ "\tDB__NCyc; LevelI__"+str(First_level_1)+"; LevelII__"+str(Second_level)+"; LevelIII__; LevelIV__; LevelV__; LevelVI__"
 			out.write(infile[i].strip()+"\n")
 	out.close()
 
