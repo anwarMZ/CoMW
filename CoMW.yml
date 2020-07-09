@@ -1,4 +1,4 @@
-name: CoMW
+---
 channels:
   - bioconda
   - conda-forge
@@ -28,4 +28,5 @@ dependencies:
   - pycosat
   - pycparser=2.19
   - pysocks=1.6.8
-  - ruamel_yaml=0.15.71
+  - ruamel_yaml
+name: CoMW
