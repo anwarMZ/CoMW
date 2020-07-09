@@ -15,6 +15,8 @@ dependencies:
   - pandas=0.19.2
   - csvkit=1.0.3
   - r-vegan=2.5.3
+  - r-plyr=1.8.4
+  - r-reshape2=1.4.3
   - infernal=1.1.1
   - emboss=6.6.0
   - bwa=0.7.17
